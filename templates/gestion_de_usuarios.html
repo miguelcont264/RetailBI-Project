@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=IBM+Plex+Sans:wght@500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-surface": "#2b3232",
+                        "tertiary-fixed": "#d8e4f3",
+                        "secondary-container": "#fdb747",
+                        "on-tertiary": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "surface-container-high": "#e3e9e9",
+                        "on-surface": "#171d1d",
+                        "primary-fixed-dim": "#abc9f1",
+                        "primary-fixed": "#d2e4ff",
+                        "primary": "#002444",
+                        "error": "#ba1a1a",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary-fixed": "#291800",
+                        "tertiary-fixed-dim": "#bcc8d6",
+                        "on-secondary-fixed-variant": "#624000",
+                        "on-tertiary-container": "#98a4b2",
+                        "secondary": "#815500",
+                        "surface-variant": "#dee4e4",
+                        "outline-variant": "#c3c6cf",
+                        "surface-container": "#e9efef",
+                        "secondary-fixed-dim": "#ffb94c",
+                        "surface-container-low": "#eff5f5",
+                        "on-tertiary-fixed-variant": "#3d4854",
+                        "inverse-on-surface": "#ecf2f2",
+                        "on-error-container": "#93000a",
+                        "on-primary-fixed-variant": "#2b486a",
+                        "primary-container": "#1b3a5b",
+                        "error-container": "#ffdad6",
+                        "on-secondary-container": "#6f4900",
+                        "on-primary-fixed": "#001c37",
+                        "on-tertiary-fixed": "#111d27",
+                        "on-error": "#ffffff",
+                        "surface-dim": "#d5dbdb",
+                        "on-primary-container": "#87a4cb",
+                        "surface-bright": "#f5fafa",
+                        "on-secondary": "#ffffff",
+                        "surface": "#f5fafa",
+                        "secondary-fixed": "#ffddb2",
+                        "surface-tint": "#436083",
+                        "inverse-primary": "#abc9f1",
+                        "tertiary-container": "#2f3a46",
+                        "outline": "#73777f",
+                        "on-surface-variant": "#43474e",
+                        "tertiary": "#19242f",
+                        "surface-container-highest": "#dee4e4",
+                        "on-background": "#171d1d",
+                        "background": "#f5fafa"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "xl": "32px",
+                        "unit": "4px",
+                        "lg": "24px",
+                        "md": "16px",
+                        "container-max": "1440px",
+                        "sm": "8px",
+                        "xs": "4px",
+                        "margin-mobile": "16px",
+                        "margin-desktop": "32px",
+                        "gutter": "16px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Inter"],
+                        "label-bold": ["Inter"],
+                        "display-md": ["IBM Plex Sans"],
+                        "label-sm": ["Inter"],
+                        "headline-sm": ["IBM Plex Sans"],
+                        "display-lg": ["IBM Plex Sans"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "label-bold": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "display-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+                        "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "500"}],
+                        "display-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .zebra-table tr:nth-child(even) {
+            background-color: rgba(27, 58, 91, 0.02);
+        }
+    </style>
+</head>
+<script>
+
+function abrirPanelUsuario() {
+
+    document
+        .getElementById("overlayUsuario")
+        .classList.remove("hidden");
+
+    document
+        .getElementById("panelUsuario")
+        .classList.remove("translate-x-full");
+
+}
+
+function cerrarPanelUsuario() {
+
+    document
+        .getElementById("overlayUsuario")
+        .classList.add("hidden");
+
+    document
+        .getElementById("panelUsuario")
+        .classList.add("translate-x-full");
+
+}
+
+</script>
+<body class="bg-background text-on-background font-body-md overflow-hidden">
+<!-- Top Navigation Bar -->
+<header class="bg-primary-container text-on-primary-container fixed top-0 w-full z-50 h-16 flex justify-between items-center px-lg border-b border-outline-variant">
+<div class="flex items-center gap-md">
+<span class="font-headline-sm text-headline-sm font-bold text-white">RetailBI</span>
+</div>
+<div class="flex items-center gap-lg">
+<div class="flex items-center gap-sm">
+<span class="font-body-md text-body-md text-white">Hola, Vinicio</span>
+<div class="w-8 h-8 rounded-full bg-surface-container-highest flex items-center justify-center overflow-hidden border border-outline-variant">
+<img alt="User Profile Avatar" class="w-full h-full object-cover" data-alt="A professional headshot of a mature businessman with a warm smile, wearing a dark blue suit jacket. The background is a clean, softly lit corporate office setting. The lighting is bright and modern, creating a professional and trustworthy atmosphere consistent with a business intelligence platform." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCwsoize0ImTT2zA9jLVJaLUSUnFB-fcTdsZveOx9K1w7rkmX3HGValyY-SvQkQJq_li2Sduydq23XLT6aaCdPRd8ytJdf6PZXR7D4EJht7plYnrvklN8GsdrMSqNxFp3a5J4DEpzvRZ44vM8hPB9magTwKUxtNDnvTXFG4beAVICA6yWoONqFS1rWrRQminXMpnR-Lgq2O6QdNFuzO8DNBaepi01oQYsrgr2kO1IFJa17V-pQye45MufJbpZD2FQ4YdUqOxqptde8u"/>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<button class="hover:bg-primary transition-colors p-xs rounded">
+<span class="material-symbols-outlined text-white" data-icon="notifications">notifications</span>
+</button>
+<button class="hover:bg-primary transition-colors p-xs rounded">
+<span class="material-symbols-outlined text-white" data-icon="settings">settings</span>
+</button>
+<a href="{{ url_for('logout') }}"
+   class="hover:bg-primary transition-colors p-xs rounded">
+
+    <span class="material-symbols-outlined text-white">
+        logout
+    </span>
+
+</a>
+</div>
+</div>
+</header>
+<div class="flex overflow-hidden">
+<!-- Sidebar Navigation -->
+<nav class="h-[calc(100vh-64px)] top-16 w-64 fixed left-0 bg-surface-container-lowest border-r border-surface-dim flex flex-col py-md gap-xs hidden md:flex">
+<div class="px-md mb-md">
+<p class="font-label-bold text-label-bold text-on-surface-variant uppercase tracking-wider"> {{ usuario_actual }}</p>
+<p class="font-body-md text-body-md text-outline">Gestión de Datos</p>
+</div>
+<a class="text-on-surface-variant hover:bg-surface-container rounded-lg mx-sm my-xs px-md py-sm flex items-center gap-md transition-all" href="/dashboard">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-label-bold text-label-bold">Dashboard</span>
+</a>
+<a class="text-on-surface-variant hover:bg-surface-container rounded-lg mx-sm my-xs px-md py-sm flex items-center gap-md transition-all" href="/cargar">
+<span class="material-symbols-outlined" data-icon="upload_file">upload_file</span>
+<span class="font-label-bold text-label-bold">Cargar archivo</span>
+</a>
+<a class="text-on-surface-variant hover:bg-surface-container rounded-lg mx-sm my-xs px-md py-sm flex items-center gap-md transition-all" href="/historial">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+<span class="font-label-bold text-label-bold">Historial</span>
+</a>
+<a class="text-on-surface-variant hover:bg-surface-container rounded-lg mx-sm my-xs px-md py-sm flex items-center gap-md transition-all" href="/errores">
+<span class="material-symbols-outlined" data-icon="report">report</span>
+<span class="font-label-bold text-label-bold">Errores</span>
+</a>
+<a class="bg-primary-container text-on-primary rounded-lg mx-sm my-xs px-md py-sm flex items-center gap-md translate-x-1 transition-transform" href="/usuario">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span class="font-label-bold text-label-bold">Usuarios</span>
+</a>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-1 overflow-y-auto p-margin-desktop bg-background md:ml-64 mt-16">
+<div class="max-w-container-max mx-auto">
+<div class="mb-xl">
+<h1 class="font-display-lg text-display-lg text-primary mb-xs">Gestión de usuarios</h1>
+<p class="text-body-lg text-on-surface-variant">Administre las cuentas con acceso al sistema</p>
+</div>
+<!-- Action Bar -->
+<div class="flex flex-wrap items-center justify-between gap-md mb-lg bg-surface p-md border border-surface-dim rounded-lg">
+<form method="GET"
+      action="/usuario"
+      class="flex flex-wrap items-center gap-md flex-1">
+
+    <!-- BUSCADOR -->
+    <div class="relative min-w-[280px]">
+
+        <span class="material-symbols-outlined absolute left-sm top-1/2 -translate-y-1/2 text-on-surface-variant">
+            search
+        </span>
+
+        <input
+            name="buscar"
+            value="{{ busqueda }}"
+            class="w-full pl-xl pr-md py-sm border border-surface-dim rounded-lg
+                   focus:ring-2 focus:ring-primary-container
+                   bg-surface-container-lowest"
+            placeholder="Buscar usuario..."
+            type="text"
+        />
+
+    </div>
+
+    <!-- FILTRO ROL -->
+    <select
+        name="rol"
+        class="px-md py-sm border border-surface-dim rounded-lg
+               focus:ring-2 focus:ring-primary-container
+               bg-surface-container-lowest text-body-md
+               text-on-surface min-w-[180px]">
+
+        <option value="">Todos</option>
+
+        <option value="ADMIN"
+            {% if rol_actual == 'ADMIN' %}selected{% endif %}>
+            ADMIN
+        </option>
+
+        <option value="OPERADOR"
+            {% if rol_actual == 'OPERADOR' %}selected{% endif %}>
+            OPERADOR
+        </option>
+
+        <option value="ANALISTA"
+            {% if rol_actual == 'ANALISTA' %}selected{% endif %}>
+            ANALISTA
+        </option>
+
+    </select>
+
+    <!-- BOTON -->
+    <button
+        type="submit"
+        class="bg-primary-container text-white px-lg py-sm rounded-lg
+               font-label-bold text-label-bold
+               hover:opacity-90 transition-all">
+
+        Filtrar
+
+    </button>
+
+</form>
+<button onclick="abrirPanelUsuario()"
+class="bg-primary-container text-white px-lg py-sm rounded-lg font-label-bold text-label-bold flex items-center gap-sm hover:opacity-90 active:scale-95 transition-all">
+
+    <span class="material-symbols-outlined">add</span>
+
+     Nuevo usuario
+
+</button>
+</div>
+<!-- User Table -->
+
+<div class="bg-surface border border-surface-dim rounded-lg overflow-hidden shadow-sm">
+
+    <div class="overflow-x-auto">
+
+        <table class="w-full border-collapse zebra-table">
+
+            <!-- HEADER -->
+            <thead class="bg-primary-container text-white text-left">
+
+                <tr>
+
+                    <th class="p-md font-label-bold uppercase">
+                        Nombre Completo
+                    </th>
+
+                    <th class="p-md font-label-bold uppercase">
+                        Usuario
+                    </th>
+
+                    <th class="p-md font-label-bold uppercase">
+                        Email
+                    </th>
+
+                    <th class="p-md font-label-bold uppercase">
+                        Rol
+                    </th>
+
+                    <th class="p-md font-label-bold uppercase">
+                        Estado
+                    </th>
+
+                    <th class="p-md font-label-bold uppercase">
+                        Último Login
+                    </th>
+
+                    <th class="p-md font-label-bold uppercase text-center">
+                        Acciones
+                    </th>
+
+                </tr>
+
+            </thead>
+
+            <!-- BODY -->
+            <tbody class="text-body-md">
+
+                {% if usuarios %}
+
+                    {% for usuario in usuarios %}
+
+                    <tr class="border-b border-surface-dim hover:bg-surface-container-low transition-colors">
+
+                        <!-- Nombre -->
+                        <td class="p-md">
+
+                            <div class="flex items-center gap-md">
+
+                                <div class="w-9 h-9 rounded-full bg-primary-container text-white flex items-center justify-center font-bold text-xs shadow">
+
+                                    {{ usuario.NombreCompleto[:1] }}{{ usuario.Apellido[:1] if usuario.Apellido else '' }}
+
+                                </div>
+
+                                <div class="flex flex-col">
+
+                                    <span class="font-semibold text-on-surface">
+                                        {{ usuario.NombreCompleto }}
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+                        </td>
+
+                        <!-- Usuario -->
+                        <td class="p-md text-on-surface-variant">
+
+                            {{ usuario.NombreUsuario }}
+
+                        </td>
+
+                        <!-- Email -->
+                        <td class="p-md text-on-surface-variant">
+
+                            {{ usuario.Email }}
+
+                        </td>
+
+                        <!-- Rol -->
+                        <td class="p-md">
+
+                            {% if usuario.Rol == 'ADMIN' %}
+
+                                <span class="px-sm py-xs bg-error-container text-error text-[10px] font-bold rounded-lg uppercase">
+                                    ADMIN
+                                </span>
+
+                            {% elif usuario.Rol == 'OPERADOR' %}
+
+                                <span class="px-sm py-xs bg-primary-container text-white text-[10px] font-bold rounded-lg uppercase">
+                                    OPERADOR
+                                </span>
+
+                            {% else %}
+
+                                <span class="px-sm py-xs bg-surface-container-high text-primary text-[10px] font-bold rounded-lg uppercase">
+                                    ANALISTA
+                                </span>
+
+                            {% endif %}
+
+                        </td>
+
+                        <!-- Estado -->
+                        <td class="p-md">
+
+                            {% if usuario.Activo == 1 %}
+
+                                <span class="px-sm py-xs bg-green-100 text-green-700 text-[11px] font-semibold rounded-lg">
+                                    Activo
+                                </span>
+
+                            {% else %}
+
+                                <span class="px-sm py-xs bg-gray-200 text-gray-600 text-[11px] font-semibold rounded-lg">
+                                    Inactivo
+                                </span>
+
+                            {% endif %}
+
+                        </td>
+
+                        <!-- Último Login -->
+                        <td class="p-md text-on-surface-variant">
+
+                            
+                            {% if usuario.UltimoLogin %}
+    {{ usuario.UltimoLogin.strftime('%d/%m/%Y %H:%M') }}
+{% else %}
+    Sin acceso
+{% endif %}
+
+                        </td>
+
+                        <!-- Acciones -->
+                        <td class="p-md">
+
+                            <div class="flex justify-center gap-md">
+
+                                <!-- Editar -->
+                                <button
+                                    class="text-on-surface-variant hover:text-primary transition-colors">
+
+                                    <span class="material-symbols-outlined">
+                                        edit
+                                    </span>
+
+                                </button>
+
+                                <!-- Password -->
+                                <button
+                                    class="text-on-surface-variant hover:text-primary transition-colors">
+
+                                    <span class="material-symbols-outlined">
+                                        key
+                                    </span>
+
+                                </button>
+
+                                <!-- Eliminar -->
+                                <button
+                                    class="text-on-surface-variant hover:text-error transition-colors">
+
+                                    <span class="material-symbols-outlined">
+                                        delete
+                                    </span>
+
+                                </button>
+
+                            </div>
+
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                {% else %}
+
+                    <tr>
+
+                        <td colspan="7" class="text-center p-xl text-on-surface-variant">
+
+                            No hay usuarios registrados
+
+                        </td>
+
+                    </tr>
+
+                {% endif %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+</div>
+</main>
+</div>
+<!-- Fondo difuminado -->
+<div id="overlayUsuario"
+     class="fixed inset-0 bg-black/10 backdrop-blur-sm z-[100] hidden">
+</div>
+
+<!-- Panel lateral -->
+<!-- Panel lateral -->
+<div id="panelUsuario"
+     class="fixed top-0 right-0 z-[101]
+            w-[420px]
+            bg-white
+            h-full
+            shadow-2xl
+            border-l border-surface-dim
+            p-xl
+            flex flex-col
+            translate-x-full
+            transition-transform duration-300 ease-in-out">
+
+    <!-- Header -->
+    <div class="flex justify-between items-center mb-xl">
+
+        <h2 class="font-display-md text-display-md text-primary">
+            Nuevo usuario
+        </h2>
+
+        <button type="button"
+                onclick="cerrarPanelUsuario()"
+                class="text-on-surface-variant hover:text-primary">
+
+            <span class="material-symbols-outlined">
+                close
+            </span>
+
+        </button>
+
+    </div>
+
+    <!-- FORMULARIO -->
+    <form
+        method="POST"
+        action="/crear_usuario"
+        class="flex-1 space-y-lg overflow-y-auto">
+
+        <!-- Nombre -->
+        <div class="space-y-xs">
+
+            <label class="font-label-bold text-label-bold text-on-surface">
+                Nombre completo
+            </label>
+
+            <input
+                name="nombre_completo"
+                required
+                class="w-full px-md py-sm border border-surface-dim rounded-lg
+                       focus:ring-2 focus:ring-primary-container
+                       bg-surface-container-lowest text-body-md"
+                placeholder="Ej. Juan Pérez"
+                type="text"
+            />
+
+        </div>
+
+        <!-- Usuario + Rol -->
+        <div class="grid grid-cols-2 gap-md">
+
+            <div class="space-y-xs">
+
+                <label class="font-label-bold text-label-bold text-on-surface">
+                    Usuario
+                </label>
+
+                <input
+                    name="usuario"
+                    required
+                    class="w-full px-md py-sm border border-surface-dim rounded-lg
+                           focus:ring-2 focus:ring-primary-container
+                           bg-surface-container-lowest text-body-md"
+                    placeholder="jperez"
+                    type="text"
+                />
+
+            </div>
+
+            <div class="space-y-xs">
+
+                <label class="font-label-bold text-label-bold text-on-surface">
+                    Rol
+                </label>
+
+                <select
+                    name="rol"
+                    class="w-full px-md py-sm border border-surface-dim rounded-lg
+                           focus:ring-2 focus:ring-primary-container
+                           bg-surface-container-lowest text-body-md">
+
+                    <option value="OPERADOR">OPERADOR</option>
+                    <option value="ADMIN">ADMIN</option>
+                    <option value="ANALISTA">ANALISTA</option>
+
+                </select>
+
+            </div>
+
+        </div>
+
+        <!-- Email -->
+        <div class="space-y-xs">
+
+            <label class="font-label-bold text-label-bold text-on-surface">
+                Email
+            </label>
+
+            <input
+                name="email"
+                class="w-full px-md py-sm border border-surface-dim rounded-lg
+                       focus:ring-2 focus:ring-primary-container
+                       bg-surface-container-lowest text-body-md"
+                placeholder="email@ejemplo.com"
+                type="email"
+            />
+
+        </div>
+
+        <!-- Password -->
+        <div class="space-y-xs">
+
+            <label class="font-label-bold text-label-bold text-on-surface">
+                Password
+            </label>
+
+            <input
+                name="password"
+                required
+                class="w-full px-md py-sm border border-surface-dim rounded-lg
+                       focus:ring-2 focus:ring-primary-container
+                       bg-surface-container-lowest text-body-md"
+                placeholder="••••••••"
+                type="password"
+            />
+
+        </div>
+
+        <!-- Confirmar password -->
+        <div class="space-y-xs">
+
+            <label class="font-label-bold text-label-bold text-on-surface">
+                Confirmar password
+            </label>
+
+            <input
+                name="confirmar_password"
+                required
+                class="w-full px-md py-sm border border-surface-dim rounded-lg
+                       focus:ring-2 focus:ring-primary-container
+                       bg-surface-container-lowest text-body-md"
+                placeholder="••••••••"
+                type="password"
+            />
+
+        </div>
+
+        <!-- Estado -->
+        <div class="pt-md flex items-center justify-between border-t border-surface-dim">
+
+            <div class="flex flex-col">
+
+                <span class="font-label-bold text-label-bold text-on-surface">
+                    Activo al crear
+                </span>
+
+            </div>
+
+            <input
+                type="checkbox"
+                name="activo"
+                checked
+                class="w-5 h-5">
+
+        </div>
+
+        <!-- Footer -->
+        <div class="mt-xl grid grid-cols-2 gap-md pt-lg border-t border-surface-dim">
+
+            <button
+                type="button"
+                onclick="cerrarPanelUsuario()"
+                class="px-lg py-sm border border-surface-dim
+                       text-on-surface
+                       font-label-bold text-label-bold
+                       rounded-lg hover:bg-surface-container-low
+                       transition-colors">
+
+                Cancelar
+
+            </button>
+
+            <button
+                type="submit"
+                class="px-lg py-sm bg-primary-container text-white
+                       font-label-bold text-label-bold
+                       rounded-lg hover:opacity-90 active:scale-95
+                       transition-all">
+
+                Crear usuario
+
+            </button>
+
+        </div>
+
+    </form>
+
+</div>
+</body></html>

@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=IBM+Plex+Sans:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-container": "#6f4900",
+                        "surface-container-highest": "#dee4e4",
+                        "outline-variant": "#c3c6cf",
+                        "inverse-primary": "#abc9f1",
+                        "error": "#ba1a1a",
+                        "surface-container-low": "#eff5f5",
+                        "on-error-container": "#93000a",
+                        "background": "#f5fafa",
+                        "on-secondary-fixed-variant": "#624000",
+                        "on-tertiary": "#ffffff",
+                        "secondary-fixed-dim": "#ffb94c",
+                        "tertiary-fixed-dim": "#bcc8d6",
+                        "outline": "#73777f",
+                        "on-surface": "#171d1d",
+                        "tertiary": "#19242f",
+                        "surface-dim": "#d5dbdb",
+                        "surface-variant": "#dee4e4",
+                        "on-tertiary-fixed-variant": "#3d4854",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-fixed": "#d2e4ff",
+                        "primary-container": "#1b3a5b",
+                        "inverse-surface": "#2b3232",
+                        "on-primary-container": "#87a4cb",
+                        "surface-container-high": "#e3e9e9",
+                        "on-surface-variant": "#43474e",
+                        "inverse-on-surface": "#ecf2f2",
+                        "secondary-container": "#fdb747",
+                        "primary-fixed-dim": "#abc9f1",
+                        "on-error": "#ffffff",
+                        "on-secondary-fixed": "#291800",
+                        "secondary-fixed": "#ffddb2",
+                        "on-primary": "#ffffff",
+                        "tertiary-fixed": "#d8e4f3",
+                        "surface-container": "#e9efef",
+                        "on-background": "#171d1d",
+                        "surface": "#f5fafa",
+                        "on-tertiary-container": "#98a4b2",
+                        "tertiary-container": "#2f3a46",
+                        "surface-bright": "#f5fafa",
+                        "error-container": "#ffdad6",
+                        "secondary": "#815500",
+                        "on-primary-fixed-variant": "#2b486a",
+                        "on-tertiary-fixed": "#111d27",
+                        "on-secondary": "#ffffff",
+                        "surface-tint": "#436083",
+                        "primary": "#002444",
+                        "on-primary-fixed": "#001c37"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "md": "16px",
+                        "margin-mobile": "16px",
+                        "gutter": "16px",
+                        "unit": "4px",
+                        "margin-desktop": "32px",
+                        "container-max": "1440px",
+                        "sm": "8px",
+                        "lg": "24px",
+                        "xs": "4px",
+                        "xl": "32px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "headline-sm": ["IBM Plex Sans"],
+                        "body-md": ["Inter"],
+                        "label-bold": ["Inter"],
+                        "display-md": ["IBM Plex Sans"],
+                        "display-lg": ["IBM Plex Sans"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+                        "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "500"}],
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "label-bold": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "display-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "display-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        /* Custom Table Styling as per Style Guidance */
+        .table-zebra tr:nth-child(even) { background-color: rgba(27, 58, 91, 0.02); }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<header class="bg-primary-container text-on-primary-container fixed top-0 w-full z-50 h-16 flex justify-between items-center px-lg border-b border-outline-variant">
+
+    <div class="flex items-center gap-md">
+        <span class="font-headline-sm text-headline-sm font-bold text-white">
+            RetailBI
+        </span>
+    </div>
+
+    <div class="flex items-center gap-lg">
+
+        <div class="flex items-center gap-sm">
+
+            <span class="font-body-md text-body-md text-white">
+                Hola, {{ usuario_actual }}
+            </span>
+
+            <div class="w-8 h-8 rounded-full bg-surface-container-highest flex items-center justify-center overflow-hidden border border-outline-variant">
+
+                <img
+                    class="w-full h-full object-cover"
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuCwsoize0ImTT2zA9jLVJaLUSUnFB-fcTdsZveOx9K1w7rkmX3HGValyY-SvQkQJq_li2Sduydq23XLT6aaCdPRd8ytJdf6PZXR7D4EJht7plYnrvklN8GsdrMSqNxFp3a5J4DEpzvRZ44vM8hPB9magTwKUxtNDnvTXFG4beAVICA6yWoONqFS1rWrRQminXMpnR-Lgq2O6QdNFuzO8DNBaepi01oQYsrgr2kO1IFJa17V-pQye45MufJbpZD2FQ4YdUqOxqptde8u"
+                    alt="avatar">
+
+            </div>
+
+        </div>
+
+        <div class="flex items-center gap-md">
+
+            <button class="hover:bg-primary transition-colors p-xs rounded">
+                <span class="material-symbols-outlined text-white">
+                    notifications
+                </span>
+            </button>
+
+            <button class="hover:bg-primary transition-colors p-xs rounded">
+                <span class="material-symbols-outlined text-white">
+                    settings
+                </span>
+            </button>
+
+          <a href="{{ url_for('logout') }}"
+   class="hover:bg-primary transition-colors p-xs rounded">
+
+    <span class="material-symbols-outlined text-white">
+        logout
+    </span>
+
+</a>
+
+        </div>
+
+    </div>
+
+</header>
+<div class="flex flex-1 pt-16 h-screen overflow-hidden">
+<!-- SideNavBar -->
+<nav class="h-screen w-64 fixed left-0 bg-surface-container-lowest border-r border-surface-dim flex flex-col py-md gap-xs hidden md:flex">
+<div class="px-md mb-md">
+<p class="font-label-bold text-label-bold text-on-surface-variant uppercase tracking-wider"> {{ usuario_actual }}</p>
+<p class="font-body-md text-body-md text-outline">Gestión de Datos</p>
+</div>
+<a class="text-on-surface-variant hover:bg-surface-container rounded-lg mx-sm my-xs px-md py-sm flex items-center gap-md transition-all" href="/dashboard">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-label-bold text-label-bold">Dashboard</span>
+</a>
+<a class="text-on-surface-variant hover:bg-surface-container rounded-lg mx-sm my-xs px-md py-sm flex items-center gap-md transition-all" href="/cargar">
+<span class="material-symbols-outlined" data-icon="upload_file">upload_file</span>
+<span class="font-label-bold text-label-bold">Cargar archivo</span>
+</a>
+<a class="bg-primary-container text-on-primary rounded-lg mx-sm my-xs px-md py-sm flex items-center gap-md translate-x-1 transition-transform" href="/historial">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+<span class="font-label-bold text-label-bold">Historial</span>
+</a>
+<a class="text-on-surface-variant hover:bg-surface-container rounded-lg mx-sm my-xs px-md py-sm flex items-center gap-md transition-all" href="/errores">
+<span class="material-symbols-outlined" data-icon="report">report</span>
+<span class="font-label-bold text-label-bold">Errores</span>
+</a>
+<a class="text-on-surface-variant hover:bg-surface-container rounded-lg mx-sm my-xs px-md py-sm flex items-center gap-md transition-all" href="/usuario">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span class="font-label-bold text-label-bold">Usuarios</span>
+</a>
+</nav>
+<!-- Main Content -->
+<main class="ml-64 flex-1 overflow-y-auto bg-background p-margin-desktop">
+<div class="max-w-container-max mx-auto">
+<!-- Page Title -->
+<header class="mb-lg">
+<h1 class="font-display-lg text-display-lg text-primary">Historial de cargas</h1>
+<p class="text-on-surface-variant font-body-md text-body-md mt-xs">Gestión y monitoreo de procesos de importación de datos.</p>
+</header>
+<!-- Filter Bar -->
+<section class="bg-surface-container-lowest border border-outline-variant p-md rounded-lg mb-lg">
+
+<form method="GET" action="/historial">
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-md items-end">
+
+        <!-- Fecha Inicio -->
+        <div>
+            <label class="block mb-1">Fecha Inicio</label>
+
+            <input type="date"
+                   name="fecha_inicio"
+                   class="w-full border rounded p-sm">
+        </div>
+
+        <!-- Fecha Fin -->
+        <div>
+            <label class="block mb-1">Fecha Fin</label>
+
+            <input type="date"
+                   name="fecha_fin"
+                   class="w-full border rounded p-sm">
+        </div>
+
+        <!-- Usuario -->
+        <div>
+            <label class="block mb-1">Usuario</label>
+
+            <select name="usuario"
+                    class="w-full border rounded p-sm">
+
+                <option value="">Todos</option>
+
+                {% for usuario in usuarios %}
+
+                <option value="{{ usuario.UsuarioID }}">
+                    {{ usuario.NombreUsuario }}
+                </option>
+
+                {% endfor %}
+
+            </select>
+        </div>
+
+        <!-- Estado -->
+        <div>
+            <label class="block mb-1">Estado</label>
+
+            <select name="estado"
+                    class="w-full border rounded p-sm">
+
+                <option value="">Todos</option>
+                <option value="COMPLETA">Completa</option>
+                <option value="FALLIDA">Fallida</option>
+                <option value="EN_PROCESO">En proceso</option>
+
+            </select>
+        </div>
+
+        <!-- Archivo -->
+        <div>
+            <label class="block mb-1">Archivo</label>
+
+            <input type="text"
+                   name="archivo"
+                   placeholder="Buscar archivo"
+                   class="w-full border rounded p-sm">
+        </div>
+
+        <!-- Botón -->
+        <div>
+            <button type="submit"
+                    class="bg-primary text-white px-md py-sm rounded w-full">
+
+                Aplicar filtros
+
+            </button>
+        </div>
+
+    </div>
+
+</form>
+
+</section>
+<!-- Data Table -->
+<div class="bg-white border border-outline-variant rounded-lg overflow-hidden">
+<div class="overflow-x-auto">
+<table class="w-full text-left table-zebra">
+<thead class="bg-primary text-white">
+<tr>
+<th class="py-md px-md font-label-bold text-label-bold uppercase">ID</th>
+<th class="py-md px-md font-label-bold text-label-bold uppercase">Fecha y hora</th>
+<th class="py-md px-md font-label-bold text-label-bold uppercase">Usuario</th>
+<th class="py-md px-md font-label-bold text-label-bold uppercase">Archivo</th>
+<th class="py-md px-md font-label-bold text-label-bold uppercase text-center">Registros</th>
+<th class="py-md px-md font-label-bold text-label-bold uppercase text-center">OK / Error</th>
+<th class="py-md px-md font-label-bold text-label-bold uppercase">Duración</th>
+<th class="py-md px-md font-label-bold text-label-bold uppercase">Estado</th>
+<th class="py-md px-md font-label-bold text-label-bold uppercase text-right">Acciones</th>
+</tr>
+</thead>
+<tbody class="text-on-surface font-body-md text-body-md">
+
+{% for fila in historial %}
+
+<tr class="border-b border-outline-variant hover:bg-surface-container-low transition-colors">
+
+<td class="py-md px-md text-on-surface-variant font-mono text-[12px]">
+    #L{{ fila.CargaID }}
+</td>
+
+<td class="py-md px-md whitespace-nowrap">
+    {{ fila.FechaInicio }}
+</td>
+
+<td class="py-md px-md">
+    {{ fila.NombreUsuario }}
+</td>
+
+<td class="py-md px-md">
+
+<div class="flex items-center gap-xs text-primary font-medium">
+
+<span class="material-symbols-outlined text-[18px]">
+description
+</span>
+
+{{ fila.NombreArchivo }}
+
+</div>
+
+</td>
+
+<td class="py-md px-md text-center">
+    {{ fila.RegistrosLeidos }}
+</td>
+
+<td class="py-md px-md text-center">
+
+<div class="flex justify-center gap-xs">
+
+<span class="bg-green-100 text-green-700 px-xs py-[2px] rounded text-[10px] font-bold">
+{{ fila.RegistrosOK }}
+</span>
+
+<span class="bg-red-100 text-red-700 px-xs py-[2px] rounded text-[10px] font-bold">
+{{ fila.RegistrosError }}
+</span>
+
+</div>
+
+</td>
+
+<td class="py-md px-md text-on-surface-variant">
+
+{% if fila.DuracionSeg %}
+    {{ fila.DuracionSeg }} seg
+{% else %}
+    --
+{% endif %}
+
+</td>
+
+<td class="py-md px-md">
+
+{% if fila.Estado == 'COMPLETA' %}
+
+<span class="bg-green-600 text-white px-sm py-[2px] rounded-full text-[11px] font-bold uppercase tracking-wider">
+    {{ fila.Estado }}
+</span>
+
+{% elif fila.Estado == 'FALLIDA' %}
+
+<span class="bg-red-600 text-white px-sm py-[2px] rounded-full text-[11px] font-bold uppercase tracking-wider">
+    {{ fila.Estado }}
+</span>
+
+{% else %}
+
+<span class="bg-yellow-500 text-white px-sm py-[2px] rounded-full text-[11px] font-bold uppercase tracking-wider">
+    {{ fila.Estado }}
+</span>
+
+{% endif %}
+
+</td>
+
+<td class="py-md px-md text-right">
+
+<div class="flex justify-end gap-sm">
+
+<button class="text-primary hover:bg-surface-container-high p-xs rounded">
+
+<span class="material-symbols-outlined">
+visibility
+</span>
+
+</button>
+
+<button class="text-primary hover:bg-surface-container-high p-xs rounded">
+
+<span class="material-symbols-outlined">
+download
+</span>
+
+</button>
+
+</div>
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="bg-surface-container-low border-t border-outline-variant p-md flex flex-col md:flex-row justify-between items-center gap-md">
+
+    <span class="font-label-bold text-label-bold text-on-surface-variant">
+
+        Mostrando
+        {{ ((pagina - 1) * registros_por_pagina) + 1 }}
+        -
+        {{ ((pagina - 1) * registros_por_pagina) + historial|length }}
+        de
+        {{ total_registros }}
+        registros
+
+    </span>
+
+    <div class="flex items-center gap-xs">
+
+        <!-- BOTÓN ANTERIOR -->
+        {% if pagina > 1 %}
+
+        <a href="{{ url_for(
+            'historial',
+            pagina=pagina-1,
+            fecha_inicio=request.args.get('fecha_inicio'),
+            fecha_fin=request.args.get('fecha_fin'),
+            usuario=request.args.get('usuario'),
+            estado=request.args.get('estado'),
+            archivo=request.args.get('archivo')
+        ) }}"
+           class="w-8 h-8 flex items-center justify-center border border-outline-variant rounded hover:bg-surface-container-high transition-colors">
+
+            <span class="material-symbols-outlined text-[18px]">
+                chevron_left
+            </span>
+
+        </a>
+
+        {% endif %}
+
+        <!-- NÚMEROS -->
+        {% for p in range(1, total_paginas + 1) %}
+
+            {% if p == pagina %}
+
+            <span class="w-8 h-8 flex items-center justify-center bg-primary text-white rounded font-label-bold text-label-bold">
+                {{ p }}
+            </span>
+
+            {% else %}
+
+            <a href="{{ url_for(
+                'historial',
+                pagina=p,
+                fecha_inicio=request.args.get('fecha_inicio'),
+                fecha_fin=request.args.get('fecha_fin'),
+                usuario=request.args.get('usuario'),
+                estado=request.args.get('estado'),
+                archivo=request.args.get('archivo')
+            ) }}"
+               class="w-8 h-8 flex items-center justify-center border border-outline-variant rounded hover:bg-surface-container-high transition-colors font-label-bold text-label-bold">
+
+                {{ p }}
+
+            </a>
+
+            {% endif %}
+
+        {% endfor %}
+
+        <!-- BOTÓN SIGUIENTE -->
+        {% if pagina < total_paginas %}
+
+        <a href="{{ url_for(
+            'historial',
+            pagina=pagina+1,
+            fecha_inicio=request.args.get('fecha_inicio'),
+            fecha_fin=request.args.get('fecha_fin'),
+            usuario=request.args.get('usuario'),
+            estado=request.args.get('estado'),
+            archivo=request.args.get('archivo')
+        ) }}"
+           class="w-8 h-8 flex items-center justify-center border border-outline-variant rounded hover:bg-surface-container-high transition-colors">
+
+            <span class="material-symbols-outlined text-[18px]">
+                chevron_right
+            </span>
+
+        </a>
+
+        {% endif %}
+
+    </div>
+
+</div>
+</div>
+</div>
+</main>
+</div>
+
+</body></html>

@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>RetailBI - Procesando Carga</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=IBM+Plex+Sans:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "secondary-fixed-dim": "#ffb94c",
+                      "surface-container": "#e9efef",
+                      "on-primary-fixed": "#001c37",
+                      "secondary-fixed": "#ffddb2",
+                      "on-primary-fixed-variant": "#2b486a",
+                      "on-secondary": "#ffffff",
+                      "primary-container": "#1b3a5b",
+                      "on-primary": "#ffffff",
+                      "outline": "#73777f",
+                      "tertiary": "#19242f",
+                      "outline-variant": "#c3c6cf",
+                      "on-secondary-fixed-variant": "#624000",
+                      "inverse-on-surface": "#ecf2f2",
+                      "on-surface": "#171d1d",
+                      "surface-container-high": "#e3e9e9",
+                      "surface": "#f5fafa",
+                      "error-container": "#ffdad6",
+                      "tertiary-fixed": "#d8e4f3",
+                      "secondary": "#815500",
+                      "inverse-surface": "#2b3232",
+                      "surface-variant": "#dee4e4",
+                      "on-tertiary-fixed": "#111d27",
+                      "tertiary-container": "#2f3a46",
+                      "on-tertiary-fixed-variant": "#3d4854",
+                      "surface-dim": "#d5dbdb",
+                      "primary": "#002444",
+                      "primary-fixed-dim": "#abc9f1",
+                      "secondary-container": "#fdb747",
+                      "on-tertiary": "#ffffff",
+                      "surface-tint": "#436083",
+                      "on-secondary-container": "#6f4900",
+                      "on-surface-variant": "#43474e",
+                      "error": "#ba1a1a",
+                      "surface-bright": "#f5fafa",
+                      "inverse-primary": "#abc9f1",
+                      "on-tertiary-container": "#98a4b2",
+                      "on-surface-variant": "#43474e",
+                      "surface-container-highest": "#dee4e4",
+                      "surface-container-low": "#eff5f5",
+                      "on-error": "#ffffff",
+                      "background": "#f5fafa",
+                      "surface-container-lowest": "#ffffff",
+                      "on-secondary-fixed": "#291800",
+                      "tertiary-fixed-dim": "#bcc8d6",
+                      "on-error-container": "#93000a",
+                      "on-background": "#171d1d",
+                      "primary-fixed": "#d2e4ff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "lg": "24px",
+                      "xl": "32px",
+                      "md": "16px",
+                      "margin-desktop": "32px",
+                      "gutter": "16px",
+                      "margin-mobile": "16px",
+                      "unit": "4px",
+                      "sm": "8px",
+                      "xs": "4px",
+                      "container-max": "1440px"
+              },
+              "fontFamily": {
+                      "display-md": ["IBM Plex Sans"],
+                      "display-lg": ["IBM Plex Sans"],
+                      "body-md": ["Inter"],
+                      "label-bold": ["Inter"],
+                      "headline-sm": ["IBM Plex Sans"],
+                      "body-lg": ["Inter"],
+                      "label-sm": ["Inter"],
+                      "mono": ["JetBrains Mono"]
+              },
+              "fontSize": {
+                      "display-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                      "display-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                      "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                      "label-bold": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                      "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "500"}],
+                      "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "400"}]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .progress-ring__circle {
+            transition: stroke-dashoffset 0.35s;
+            transform: rotate(-90deg);
+            transform-origin: 50% 50%;
+        }
+    </style>
+</head>
+<body class="bg-background font-body-md text-on-background overflow-hidden">
+<!-- TopNavBar -->
+<header class="fixed top-0 left-0 right-0 z-50 bg-surface border-b border-outline-variant h-16 flex items-center justify-between px-margin-desktop max-w-container-max mx-auto">
+<div class="flex items-center gap-md">
+<span class="font-headline-sm text-headline-sm font-bold text-primary">RetailBI - Sistema de Carga de Datos</span>
+</div>
+<div class="flex items-center gap-lg">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:bg-surface-container rounded-full p-xs">notifications</span>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:bg-surface-container rounded-full p-xs">help_outline</span>
+</div>
+<div class="w-8 h-8 rounded-full overflow-hidden bg-surface-container">
+<img alt="User Profile Avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuABtcuwnivy_kjtw_izhiuHjNJRjlubQd_5tI8GQsJDMd3WFM3ytFMYRJHof_LVP75yZT2pd44cR6etq1zM3iUiPIbTm9SS5S3ShUuhfAgjAnqJsi8eU5dp59K4aSQ-8ab1TjEc2OH-8ytnfwAXiNK7ofS1dJ7YW7RWxmoiNyXIZujvsC1JnpTyg4dw1tAQQQ5ljN0owcu1sjbZ1S1b69Je7AFTA6CZDRjEtgpKuO6OZ1XvYxGquBlAlbmDkQdwC-UfXTHa6AYtOACn"/>
+</div>
+</div>
+</header>
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-16 h-[calc(100vh-64px)] w-64 bg-surface-container-low border-r border-outline-variant z-40 flex flex-col py-md">
+<div class="px-md mb-lg">
+<div class="flex flex-col gap-xs">
+<span class="font-headline-sm text-headline-sm text-primary font-bold">Administrador</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Unidad de Datos</span>
+</div>
+</div>
+<nav class="flex-1 flex flex-col gap-xs">
+<a class="flex items-center gap-sm text-on-surface-variant p-md mx-sm hover:bg-surface-container-high rounded-xl transition-all" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-bold text-label-bold">Dashboard</span>
+</a>
+<a class="flex items-center gap-sm bg-primary-container text-on-primary-container rounded-xl p-md mx-sm scale-98 transition-all" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">upload_file</span>
+<span class="font-label-bold text-label-bold">Carga de Datos</span>
+</a>
+<a class="flex items-center gap-sm text-on-surface-variant p-md mx-sm hover:bg-surface-container-high rounded-xl transition-all" href="#">
+<span class="material-symbols-outlined">history</span>
+<span class="font-label-bold text-label-bold">Historial</span>
+</a>
+<a class="flex items-center gap-sm text-on-surface-variant p-md mx-sm hover:bg-surface-container-high rounded-xl transition-all" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-label-bold text-label-bold">Reportes</span>
+</a>
+<a class="flex items-center gap-sm text-on-surface-variant p-md mx-sm hover:bg-surface-container-high rounded-xl transition-all mt-auto" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-bold text-label-bold">Configuración</span>
+</a>
+</nav>
+</aside>
+<!-- Main Canvas -->
+<main class="ml-64 pt-16 h-screen overflow-y-auto">
+<div class="max-w-container-max mx-auto p-margin-desktop h-full flex flex-col">
+<header class="mb-lg flex justify-between items-start">
+<div>
+<h1 class="font-display-lg text-display-lg text-primary mb-xs">Procesando archivo</h1>
+<div class="flex items-center gap-sm bg-surface-container p-sm px-md rounded-lg border border-outline-variant">
+<span class="material-symbols-outlined text-primary text-[20px]">description</span>
+<span class="font-body-md font-medium text-primary">ventas_octubre_2026.csv · 100,000 filas</span>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<span class="bg-secondary-fixed text-on-secondary-fixed px-md py-xs rounded-full font-label-bold uppercase">Procesando</span>
+</div>
+</header>
+<!-- Layout Grid -->
+<div class="grid grid-cols-12 gap-lg flex-1 min-h-0">
+<!-- Left Column: Core Progress -->
+<div class="col-span-8 flex flex-col gap-lg min-h-0">
+<!-- Progress and Stages Card -->
+<div class="bg-surface border border-outline-variant p-xl rounded-lg flex gap-xl items-center shadow-sm">
+<!-- Progress Circle -->
+<div class="relative flex-shrink-0">
+<svg class="w-48 h-48">
+<circle class="text-surface-container-high" cx="96" cy="96" fill="transparent" r="88" stroke="currentColor" stroke-width="12"></circle>
+<circle class="text-primary progress-ring__circle" cx="96" cy="96" fill="transparent" r="88" stroke="currentColor" stroke-dasharray="552.92" stroke-dashoffset="182.46" stroke-linecap="round" stroke-width="12"></circle>
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center">
+<span class="font-display-lg text-[40px] text-primary">67%</span>
+<span class="font-label-bold text-on-surface-variant">COMPLETADO</span>
+</div>
+</div>
+<!-- Timeline Stages -->
+<div class="flex-1 flex flex-col gap-lg py-sm">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-[#27AE60]/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-[#27AE60]" style="font-variation-settings: 'wght' 700;">check</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-bold text-[#27AE60]">ETAPA 1: EXTRAER</span>
+<span class="font-body-md text-on-surface-variant">Datos leídos exitosamente del archivo fuente.</span>
+</div>
+</div>
+<div class="flex items-center gap-md relative">
+<div class="absolute left-5 top-[-24px] w-[2px] h-[24px] bg-outline-variant"></div>
+<div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center animate-pulse">
+<span class="material-symbols-outlined text-white">sync</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-bold text-primary">ETAPA 2: TRANSFORMAR</span>
+<span class="font-body-md text-primary font-medium">Validando esquemas y convirtiendo tipos de datos...</span>
+</div>
+<div class="absolute left-5 bottom-[-24px] w-[2px] h-[24px] bg-outline-variant"></div>
+</div>
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center">
+<span class="material-symbols-outlined text-outline">pending</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-bold text-outline">ETAPA 3: CARGAR</span>
+<span class="font-body-md text-on-surface-variant opacity-50">Pendiente de inicio.</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Activity Log -->
+<div class="bg-tertiary text-on-tertiary-container p-lg rounded-lg flex-1 min-h-0 flex flex-col border border-outline shadow-inner">
+<div class="flex items-center justify-between mb-sm border-b border-outline-variant/20 pb-xs">
+<span class="font-label-bold text-on-tertiary uppercase flex items-center gap-xs">
+<span class="material-symbols-outlined text-[16px]">terminal</span>
+                                Registro de Actividad (Log)
+                            </span>
+<span class="font-label-sm text-outline">v2.4.1-stable</span>
+</div>
+<div class="font-mono text-xs overflow-y-auto flex-1 space-y-1 custom-scrollbar">
+<p class="text-on-tertiary/60">[00:00:01] <span class="text-secondary-fixed">INIT</span> Sistema de carga inicializado correctamente.</p>
+<p class="text-on-tertiary/60">[00:00:05] <span class="text-[#27AE60]">EXTRACT</span> Leyendo cabeceras: ID_VENTA, FECHA, SKU, CANTIDAD, TIENDA...</p>
+<p class="text-on-tertiary/60">[00:00:12] <span class="text-[#27AE60]">EXTRACT</span> 100,000 registros identificados en búfer de memoria.</p>
+<p class="text-on-tertiary/60">[00:00:20] <span class="text-primary-fixed">TRANSFORM</span> Iniciando normalización de fechas formato ISO-8601.</p>
+<p class="text-on-tertiary/60">[00:00:45] <span class="text-error">ERROR</span> Fila 12,043: Valor 'N/A' no es un entero válido para 'CANTIDAD'.</p>
+<p class="text-on-tertiary/60">[00:01:02] <span class="text-primary-fixed">TRANSFORM</span> 50% de la transformación completada (50,000 filas).</p>
+<p class="text-on-tertiary/60">[00:01:15] <span class="text-error">ERROR</span> Fila 45,910: SKU 'XYZ-999' no existe en maestro de productos.</p>
+<p class="text-on-tertiary/60">[00:01:23] <span class="text-primary-fixed">TRANSFORM</span> Procesando bloque 67,000 - 70,000...</p>
+<p class="text-on-primary-container animate-pulse">_</p>
+</div>
+</div>
+</div>
+<!-- Right Column: Stats Panel -->
+<div class="col-span-4 flex flex-col gap-lg">
+<!-- Stats Card -->
+<div class="bg-surface border border-outline-variant rounded-lg divide-y divide-outline-variant overflow-hidden shadow-sm">
+<div class="p-lg">
+<span class="font-label-bold text-on-surface-variant uppercase mb-md block">Estadísticas de Carga</span>
+<div class="space-y-lg">
+<div>
+<div class="flex justify-between items-end mb-xs">
+<span class="font-body-md text-on-surface">Filas procesadas</span>
+<span class="font-label-bold text-primary">67.2%</span>
+</div>
+<div class="font-display-md text-primary">67,234 <span class="text-on-surface-variant font-body-md">/ 100,000</span></div>
+</div>
+<div>
+<span class="font-body-md text-on-surface block mb-xs">Errores encontrados</span>
+<div class="font-display-md text-[#E74C3C] flex items-center gap-sm">
+                                        47
+                                        <span class="material-symbols-outlined text-[20px]">warning</span>
+</div>
+</div>
+</div>
+</div>
+<div class="p-lg bg-surface-container-low">
+<div class="grid grid-cols-2 gap-md">
+<div>
+<span class="font-label-sm text-on-surface-variant block mb-xs">Transcurrido</span>
+<div class="font-label-bold text-primary text-lg flex items-center gap-xs">
+<span class="material-symbols-outlined text-[18px]">timer</span>
+                                        00:01:23
+                                    </div>
+</div>
+<div>
+<span class="font-label-sm text-on-surface-variant block mb-xs">Restante (Est.)</span>
+<div class="font-label-bold text-primary text-lg flex items-center gap-xs">
+<span class="material-symbols-outlined text-[18px]">hourglass_empty</span>
+                                        00:00:42
+                                    </div>
+</div>
+</div>
+</div>
+</div>
+<!-- Visual Context Card -->
+<div class="bg-surface border border-outline-variant rounded-lg p-md overflow-hidden relative group">
+<img alt="Contexto de datos" class="w-full h-32 object-cover rounded mb-md opacity-80" data-alt="A professional data center dashboard view on a high-resolution screen, showing complex line charts and data processing metrics in a clean, corporate dark mode theme. The surrounding environment is a modern, dimly lit office with cool blue and white ambient lighting, emphasizing precision, technology, and big data management in a retail business context." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAmZEq8VTv2oiqGQQdiyMrU3lfR-q0_gCuPysXMfbbdIBds4Lvr9lwSqUamVR_roLAKEJjzqL5yRWHrXDb9KEDq4LjodYAG3gutPQsLNu2ldzb6YA9w5InpNgimbf4XdS0iFIfM0pL4-z0qHXabq6NJ47BWpv4U26RhgqeUCk3UWxpwzMj6eYXWB6wmSg-Hr-ibyUWkYJPlCC_536b8RET1XF4CLeUWYCgi3A9yfd84BAwOlcXesGRg2oa_zHbULlXIWLojFgpjey1x"/>
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary text-[18px]">info</span>
+<p class="font-label-sm text-on-surface-variant">El sistema está optimizado para procesos concurrentes de alta demanda.</p>
+</div>
+</div>
+<!-- Bottom Action -->
+<div class="mt-auto flex justify-end">
+<button class="flex items-center gap-sm px-lg py-md border border-[#E74C3C] text-[#E74C3C] font-label-bold rounded hover:bg-[#E74C3C]/10 transition-all active:scale-95">
+<span class="material-symbols-outlined">cancel</span>
+                            Cancelar carga
+                        </button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="fixed bottom-0 left-64 right-0 bg-surface-container-highest border-t border-outline-variant z-40 py-sm px-margin-desktop flex justify-between items-center h-12">
+<span class="font-label-sm text-on-surface-variant">© 2024 RetailBI - Universidad de Ingeniería de Datos. Todos los derechos reservados.</span>
+<div class="flex items-center gap-lg">
+<a class="font-label-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Soporte Técnico</a>
+<a class="font-label-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Privacidad</a>
+</div>
+</footer>
+</body></html>

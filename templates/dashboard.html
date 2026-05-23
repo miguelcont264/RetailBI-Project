@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>RetailBI - Panel Principal</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=IBM+Plex+Sans:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-background": "#171d1d",
+                      "surface-container-low": "#eff5f5",
+                      "on-tertiary-container": "#98a4b2",
+                      "on-tertiary-fixed": "#111d27",
+                      "on-primary-fixed-variant": "#2b486a",
+                      "surface-tint": "#436083",
+                      "background": "#f5fafa",
+                      "surface-container": "#e9efef",
+                      "outline-variant": "#c3c6cf",
+                      "on-tertiary": "#ffffff",
+                      "on-tertiary-fixed-variant": "#3d4854",
+                      "surface-container-highest": "#dee4e4",
+                      "surface-bright": "#f5fafa",
+                      "primary": "#002444",
+                      "surface-container-lowest": "#ffffff",
+                      "on-surface": "#171d1d",
+                      "secondary-fixed-dim": "#ffb94c",
+                      "inverse-primary": "#abc9f1",
+                      "error": "#ba1a1a",
+                      "on-error-container": "#93000a",
+                      "surface-dim": "#d5dbdb",
+                      "on-secondary-fixed-variant": "#624000",
+                      "on-secondary-fixed": "#291800",
+                      "primary-container": "#1b3a5b",
+                      "surface": "#f5fafa",
+                      "on-surface-variant": "#43474e",
+                      "inverse-on-surface": "#ecf2f2",
+                      "error-container": "#ffdad6",
+                      "primary-fixed": "#d2e4ff",
+                      "tertiary": "#19242f",
+                      "on-secondary-container": "#6f4900",
+                      "on-primary": "#ffffff",
+                      "tertiary-container": "#2f3a46",
+                      "tertiary-fixed-dim": "#bcc8d6",
+                      "inverse-surface": "#2b3232",
+                      "outline": "#73777f",
+                      "secondary-container": "#fdb747",
+                      "on-secondary": "#ffffff",
+                      "secondary": "#815500",
+                      "surface-variant": "#dee4e4",
+                      "on-primary-container": "#87a4cb",
+                      "secondary-fixed": "#ffddb2",
+                      "on-error": "#ffffff",
+                      "tertiary-fixed": "#d8e4f3",
+                      "on-primary-fixed": "#001c37",
+                      "primary-fixed-dim": "#abc9f1",
+                      "surface-container-high": "#e3e9e9"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "lg": "24px",
+                      "gutter": "16px",
+                      "xs": "4px",
+                      "md": "16px",
+                      "sm": "8px",
+                      "container-max": "1440px",
+                      "margin-mobile": "16px",
+                      "unit": "4px",
+                      "xl": "32px",
+                      "margin-desktop": "32px"
+              },
+              "fontFamily": {
+                      "label-sm": ["Inter"],
+                      "display-lg": ["IBM Plex Sans"],
+                      "body-md": ["Inter"],
+                      "headline-sm": ["IBM Plex Sans"],
+                      "body-lg": ["Inter"],
+                      "label-bold": ["Inter"],
+                      "display-md": ["IBM Plex Sans"]
+              },
+              "fontSize": {
+                      "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+                      "display-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                      "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                      "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "500"}],
+                      "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "label-bold": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                      "display-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}]
+              }
+            },
+          },
+        }
+      </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f5fafa;
+        }
+        .zebra-table tr:nth-child(even) {
+            background-color: rgba(27, 58, 91, 0.02);
+        }
+    </style>
+</head>
+<body class="text-on-surface">
+<!-- TopNavBar Shell -->
+<header class="bg-primary-container text-on-primary-container fixed top-0 w-full z-50 h-16 flex justify-between items-center px-lg border-b border-outline-variant">
+<div class="flex items-center gap-md">
+<span class="font-headline-sm text-headline-sm font-bold text-white">RetailBI</span>
+</div>
+<div class="flex items-center gap-lg">
+<div class="flex items-center gap-sm">
+<span class="font-body-md text-body-md text-white">Hola, Vinicio</span>
+<div class="w-8 h-8 rounded-full bg-surface-container-highest flex items-center justify-center overflow-hidden border border-outline-variant">
+<img alt="User Profile Avatar" class="w-full h-full object-cover" data-alt="A professional headshot of a mature businessman with a warm smile, wearing a dark blue suit jacket. The background is a clean, softly lit corporate office setting. The lighting is bright and modern, creating a professional and trustworthy atmosphere consistent with a business intelligence platform." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCwsoize0ImTT2zA9jLVJaLUSUnFB-fcTdsZveOx9K1w7rkmX3HGValyY-SvQkQJq_li2Sduydq23XLT6aaCdPRd8ytJdf6PZXR7D4EJht7plYnrvklN8GsdrMSqNxFp3a5J4DEpzvRZ44vM8hPB9magTwKUxtNDnvTXFG4beAVICA6yWoONqFS1rWrRQminXMpnR-Lgq2O6QdNFuzO8DNBaepi01oQYsrgr2kO1IFJa17V-pQye45MufJbpZD2FQ4YdUqOxqptde8u"/>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<button class="hover:bg-primary transition-colors p-xs rounded">
+<span class="material-symbols-outlined text-white" data-icon="notifications">notifications</span>
+</button>
+<button class="hover:bg-primary transition-colors p-xs rounded">
+<span class="material-symbols-outlined text-white" data-icon="settings">settings</span>
+</button>
+<a href="{{ url_for('logout') }}"
+   class="hover:bg-primary transition-colors p-xs rounded">
+
+    <span class="material-symbols-outlined text-white">
+        logout
+    </span>
+
+</a>
+</div>
+</div>
+</header>
+<div class="flex pt-16">
+<!-- SideNavBar Shell -->
+<nav class="h-screen w-64 fixed left-0 bg-surface-container-lowest border-r border-surface-dim flex flex-col py-md gap-xs hidden md:flex">
+<div class="px-md mb-md">
+<p class="font-label-bold text-label-bold text-on-surface-variant uppercase tracking-wider"> {{ usuario_actual }}</p>
+<p class="font-body-md text-body-md text-outline">Gestión de Datos</p>
+</div>
+<a class="bg-primary-container text-on-primary rounded-lg mx-sm my-xs px-md py-sm flex items-center gap-md translate-x-1 transition-transform" href="/dashboard">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-label-bold text-label-bold">Dashboard</span>
+</a>
+<a class="text-on-surface-variant hover:bg-surface-container rounded-lg mx-sm my-xs px-md py-sm flex items-center gap-md transition-all" href="/cargar">
+<span class="material-symbols-outlined" data-icon="upload_file">upload_file</span>
+<span class="font-label-bold text-label-bold">Cargar archivo</span>
+</a>
+<a class="text-on-surface-variant hover:bg-surface-container rounded-lg mx-sm my-xs px-md py-sm flex items-center gap-md transition-all" href="/historial">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+<span class="font-label-bold text-label-bold">Historial</span>
+</a>
+<a class="text-on-surface-variant hover:bg-surface-container rounded-lg mx-sm my-xs px-md py-sm flex items-center gap-md transition-all" href="/errores">
+<span class="material-symbols-outlined" data-icon="report">report</span>
+<span class="font-label-bold text-label-bold">Errores</span>
+</a>
+<a class="text-on-surface-variant hover:bg-surface-container rounded-lg mx-sm my-xs px-md py-sm flex items-center gap-md transition-all" href="/usuario">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span class="font-label-bold text-label-bold">Usuarios</span>
+</a>
+</nav>
+<!-- Main Content Canvas -->
+<main class="flex-1 ml-0 md:ml-64 p-lg container-max mx-auto">
+<!-- Header Section -->
+<header class="mb-xl flex flex-col md:flex-row md:items-end justify-between gap-md">
+<div>
+<h1 class="font-display-lg text-display-lg text-primary-container">Panel principal</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Resumen de la actividad reciente de carga de datos</p>
+</div>
+<div class="flex gap-sm">
+<a href="/historial"
+   class="bg-white border border-primary-container text-primary-container font-label-bold text-label-bold px-lg py-sm rounded-lg hover:bg-surface-container transition-all flex items-center gap-sm">
+
+    <span class="material-symbols-outlined text-sm">
+        history
+    </span>
+
+    Ver historial completo
+
+</a>
+<a href="/cargar"
+   class="bg-secondary-container text-on-secondary-container font-label-bold text-label-bold px-lg py-sm rounded-lg hover:shadow-md transition-all flex items-center gap-sm">
+
+    <span class="material-symbols-outlined"
+          style="font-variation-settings: 'wght' 600;">
+
+        add
+
+    </span>
+
+    Cargar nuevo archivo
+
+</a>
+</div>
+</header>
+<!-- Metric Cards Grid -->
+<section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-md mb-xl">
+<!-- Card 1 -->
+<div class="bg-white border border-surface-dim p-md flex flex-col gap-xs">
+<span class="font-label-bold text-label-bold text-on-surface-variant uppercase">Cargas totales</span>
+<div class="flex items-baseline justify-between">
+<span class="font-display-md text-display-md text-primary-container"> {{ total_cargas }}</span>
+<div class="w-8 h-8 bg-primary-fixed flex items-center justify-center rounded">
+<span class="material-symbols-outlined text-primary-container" data-icon="inventory_2">inventory_2</span>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-white border border-surface-dim p-md flex flex-col gap-xs">
+<span class="font-label-bold text-label-bold text-on-surface-variant uppercase">Cargas exitosas</span>
+<div class="flex items-baseline justify-between">
+<span class="font-display-md text-display-md text-primary-container">{{ cargas_exitosas }}</span>
+<div class="w-8 h-8 bg-green-100 flex items-center justify-center rounded">
+<span class="material-symbols-outlined text-green-700" data-icon="check_circle">check_circle</span>
+</div>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="bg-white border border-surface-dim p-md flex flex-col gap-xs">
+<span class="font-label-bold text-label-bold text-on-surface-variant uppercase">Cargas fallidas</span>
+<div class="flex items-baseline justify-between">
+<span class="font-display-md text-display-md text-primary-container">{{ cargas_fallidas }}</span>
+<div class="w-8 h-8 bg-error-container flex items-center justify-center rounded">
+<span class="material-symbols-outlined text-error" data-icon="error">error</span>
+</div>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="bg-white border border-surface-dim p-md flex flex-col gap-xs">
+<span class="font-label-bold text-label-bold text-on-surface-variant uppercase">Registros procesados</span>
+<div class="flex items-baseline justify-between">
+<span class="font-display-md text-display-md text-primary-container">{{ registros_totales }}</span>
+<div class="w-8 h-8 bg-secondary-fixed flex items-center justify-center rounded">
+<span class="material-symbols-outlined text-on-secondary-container" data-icon="database">database</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Table Section -->
+<section class="bg-white border border-surface-dim overflow-hidden">
+<div class="p-md border-b border-surface-dim flex justify-between items-center">
+<h2 class="font-headline-sm text-headline-sm text-primary-container">Últimas 5 cargas</h2>
+<span class="font-label-sm text-label-sm text-outline">Actualizado hace 5 min</span>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left zebra-table">
+<thead>
+<tr class="bg-primary-container text-white font-label-bold text-label-bold uppercase">
+<th class="px-md py-sm">Fecha</th>
+<th class="px-md py-sm">Usuario</th>
+<th class="px-md py-sm">Archivo</th>
+<th class="px-md py-sm">Registros</th>
+<th class="px-md py-sm">Estado</th>
+</tr>
+</thead>
+<tbody class="font-body-md text-body-md">
+
+{% for carga in ultimas_cargas %}
+
+<tr>
+
+    <td class="px-md py-md border-b border-surface-dim">
+        {{ carga.FechaInicio.strftime('%d/%m/%Y %H:%M') }}
+    </td>
+
+    <td class="px-md py-md border-b border-surface-dim">
+        {{ carga.NombreUsuario }}
+    </td>
+
+    <td class="px-md py-md border-b border-surface-dim">
+        {{ carga.NombreArchivo }}
+    </td>
+
+    <td class="px-md py-md border-b border-surface-dim">
+        {{ carga.RegistrosLeidos }}
+    </td>
+
+    <td class="px-md py-md border-b border-surface-dim">
+
+        {% if carga.Estado == 'COMPLETA' %}
+
+            <span class="bg-primary-container text-white px-sm py-xs rounded text-label-bold text-[10px] uppercase">
+                Procesado
+            </span>
+
+        {% elif carga.Estado == 'FALLIDA' %}
+
+            <span class="bg-error text-white px-sm py-xs rounded text-label-bold text-[10px] uppercase">
+                Error
+            </span>
+
+        {% else %}
+
+            <span class="bg-secondary-container text-on-secondary-container px-sm py-xs rounded text-label-bold text-[10px] uppercase">
+                En proceso
+            </span>
+
+        {% endif %}
+
+    </td>
+
+</tr>
+
+{% endfor %}
+
+</tbody>
+</table>
+</div>
+</section>
+<!-- Bottom Promotion/Info Section (Asymmetric Layout Element) -->
+<section class="mt-xl grid grid-cols-1 lg:grid-cols-3 gap-md">
+<div class="lg:col-span-2 bg-primary-container p-lg flex items-center justify-between overflow-hidden relative min-h-[160px]">
+<div class="relative z-10">
+<h3 class="text-white font-display-md text-display-md mb-sm">Optimiza tus cargas</h3>
+<p class="text-on-primary-container font-body-lg text-body-lg max-w-md">Utiliza nuestras plantillas CSV estandarizadas para reducir los errores de validación en un 80%.</p>
+</div>
+<div class="absolute right-[-20px] top-[-20px] opacity-10">
+<span class="material-symbols-outlined text-[180px] text-white" data-icon="analytics">analytics</span>
+</div>
+</div>
+<div class="bg-white border border-surface-dim p-lg flex flex-col justify-center">
+<span class="material-symbols-outlined text-primary-container text-4xl mb-sm" data-icon="help_outline">help_outline</span>
+<h4 class="font-headline-sm text-headline-sm text-primary-container mb-xs">¿Necesitas ayuda?</h4>
+<p class="font-body-md text-body-md text-on-surface-variant mb-md">Consulta nuestra guía de resolución de errores comunes.</p>
+<a class="text-primary-container font-label-bold text-label-bold hover:underline" href="#">Ir a Soporte Técnico →</a>
+</div>
+</section>
+</main>
+</div>
+<!-- Mobile Bottom Navigation (Responsive Pivot) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full bg-surface-container-lowest h-16 border-t border-surface-dim flex justify-around items-center z-50">
+<button class="flex flex-col items-center gap-xs text-primary-container">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="text-[10px] font-label-bold uppercase">Inicio</span>
+</button>
+<button class="flex flex-col items-center gap-xs text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="upload_file">upload_file</span>
+<span class="text-[10px] font-label-bold uppercase">Cargar</span>
+</button>
+<button class="flex flex-col items-center gap-xs text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+<span class="text-[10px] font-label-bold uppercase">Historial</span>
+</button>
+<button class="flex flex-col items-center gap-xs text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span class="text-[10px] font-label-bold uppercase">Usuarios</span>
+</button>
+</nav>
+</body></html>

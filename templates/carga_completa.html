@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=IBM+Plex+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-tertiary-fixed-variant": "#3d4854",
+                    "on-primary": "#ffffff",
+                    "on-secondary-fixed": "#291800",
+                    "inverse-primary": "#abc9f1",
+                    "on-background": "#171d1d",
+                    "surface-bright": "#f5fafa",
+                    "inverse-on-surface": "#ecf2f2",
+                    "surface-container-lowest": "#ffffff",
+                    "on-primary-container": "#87a4cb",
+                    "primary-fixed-dim": "#abc9f1",
+                    "primary-fixed": "#d2e4ff",
+                    "on-surface-variant": "#43474e",
+                    "on-tertiary-container": "#98a4b2",
+                    "surface-dim": "#d5dbdb",
+                    "on-surface": "#171d1d",
+                    "on-tertiary-fixed": "#111d27",
+                    "inverse-surface": "#2b3232",
+                    "surface-container-highest": "#dee4e4",
+                    "outline-variant": "#c3c6cf",
+                    "secondary-fixed": "#ffddb2",
+                    "primary": "#002444",
+                    "background": "#f5fafa",
+                    "tertiary-fixed": "#d8e4f3",
+                    "error-container": "#ffdad6",
+                    "surface-tint": "#436083",
+                    "on-tertiary": "#ffffff",
+                    "on-secondary-container": "#6f4900",
+                    "tertiary-container": "#2f3a46",
+                    "tertiary": "#19242f",
+                    "on-secondary": "#ffffff",
+                    "secondary-fixed-dim": "#ffb94c",
+                    "on-primary-fixed": "#001c37",
+                    "on-error-container": "#93000a",
+                    "on-error": "#ffffff",
+                    "surface-container-high": "#e3e9e9",
+                    "outline": "#73777f",
+                    "tertiary-fixed-dim": "#bcc8d6",
+                    "secondary-container": "#fdb747",
+                    "on-secondary-fixed-variant": "#624000",
+                    "surface": "#f5fafa",
+                    "on-primary-fixed-variant": "#2b486a",
+                    "surface-container-low": "#eff5f5",
+                    "secondary": "#815500",
+                    "error": "#ba1a1a",
+                    "surface-variant": "#dee4e4",
+                    "primary-container": "#1b3a5b",
+                    "surface-container": "#e9efef"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "container-max": "1440px",
+                    "xl": "32px",
+                    "gutter": "16px",
+                    "lg": "24px",
+                    "md": "16px",
+                    "margin-mobile": "16px",
+                    "sm": "8px",
+                    "margin-desktop": "32px",
+                    "xs": "4px",
+                    "unit": "4px"
+            },
+            "fontFamily": {
+                    "label-bold": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "headline-sm": ["IBM Plex Sans"],
+                    "display-lg": ["IBM Plex Sans"],
+                    "body-md": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "display-md": ["IBM Plex Sans"]
+            },
+            "fontSize": {
+                    "label-bold": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "500"}],
+                    "display-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "display-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #f5fafa;
+        }
+    </style>
+</head>
+<body class="font-body-md text-on-surface">
+<!-- TopNavBar -->
+<header class="fixed top-0 left-0 right-0 z-50 bg-surface border-b border-outline-variant h-16">
+<div class="flex justify-between items-center w-full px-margin-desktop h-16 max-w-container-max mx-auto">
+<div class="flex items-center gap-md">
+<span class="font-headline-sm text-headline-sm font-bold text-primary">RetailBI - Sistema de Carga de Datos</span>
+</div>
+<div class="flex items-center gap-lg">
+<div class="hidden md:flex items-center gap-md text-on-surface-variant">
+<button class="material-symbols-outlined hover:bg-surface-container transition-colors duration-200 p-xs rounded-lg" data-icon="notifications">notifications</button>
+<button class="material-symbols-outlined hover:bg-surface-container transition-colors duration-200 p-xs rounded-lg" data-icon="help_outline">help_outline</button>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-outline-variant">
+<img alt="User Profile Avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA3OmQyTN-2jzmjF2uYw785TZSS_07rCkupMnb7yH0Z3yEg4wYM0s4KEBMGgQX1E36rbaJPSe5tHzq9opTVMP6T9bMurOPLnja0-jk1qnWPuWhS8pxf-7_mKtHVAX93sHxPHTYBjnqGsQsDU5hmDokAjjaIsMGN935o983RealIzevNqyYanDxtH3_S3PZWE3ssJxy7p8HWG0FgIYuw7k-7vBmhcEYbR76lMiooTIjQWwFkfz0NMbJ8SP6HyaHOlyE5AatggESgzQe-"/>
+</div>
+</div>
+</div>
+</div>
+</header>
+<div class="flex min-h-screen pt-16">
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-0 h-full flex flex-col z-40 py-md bg-surface-container-low border-r border-outline-variant w-64 pt-20">
+<div class="px-md mb-lg">
+<div class="flex items-center gap-sm mb-xs">
+<span class="material-symbols-outlined text-primary" data-icon="analytics" style="font-variation-settings: 'FILL' 1;">analytics</span>
+<span class="font-headline-sm text-headline-sm text-primary font-bold">Administrador</span>
+</div>
+<span class="font-label-bold text-label-bold text-on-surface-variant">Unidad de Datos</span>
+</div>
+<nav class="flex-1 flex flex-col gap-xs">
+<a class="flex items-center gap-sm text-on-surface-variant p-md mx-sm hover:bg-surface-container-high transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-label-bold text-label-bold">Dashboard</span>
+</a>
+<a class="flex items-center gap-sm bg-primary-container text-on-primary-container rounded-xl p-md mx-sm active:scale-98 duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="upload_file">upload_file</span>
+<span class="font-label-bold text-label-bold">Carga de Datos</span>
+</a>
+<a class="flex items-center gap-sm text-on-surface-variant p-md mx-sm hover:bg-surface-container-high transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+<span class="font-label-bold text-label-bold">Historial</span>
+</a>
+<a class="flex items-center gap-sm text-on-surface-variant p-md mx-sm hover:bg-surface-container-high transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span class="font-label-bold text-label-bold">Reportes</span>
+</a>
+<a class="flex items-center gap-sm text-on-surface-variant p-md mx-sm hover:bg-surface-container-high transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-label-bold text-label-bold">Configuración</span>
+</a>
+</nav>
+<div class="p-md">
+<button class="w-full py-sm bg-primary text-on-primary rounded-lg font-label-bold text-label-bold hover:opacity-90 transition-opacity">
+                    Nuevo Registro
+                </button>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="ml-64 flex-1 p-margin-desktop">
+<div class="max-w-5xl mx-auto flex flex-col items-center text-center">
+<!-- Success Header Section -->
+<div class="mb-xl">
+<div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mb-md mx-auto">
+<span class="material-symbols-outlined text-green-600 text-5xl" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<h1 class="font-display-md text-display-md text-primary mb-xs">Carga completada exitosamente</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant">
+<span class="font-bold">ventas_octubre_2026.csv</span> · Procesado en 1 minuto 47 segundos
+                    </p>
+</div>
+<!-- Metrics Grid -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-md w-full mb-xl">
+<div class="bg-surface border border-outline-variant p-md text-left flex flex-col justify-between h-32 hover:border-green-500 transition-colors">
+<span class="font-label-bold text-label-bold text-on-surface-variant uppercase tracking-wider">Registros cargados</span>
+<div class="flex items-baseline gap-xs">
+<span class="font-display-md text-display-md text-green-600">99,953</span>
+</div>
+<div class="h-1 bg-green-500 w-full mt-xs"></div>
+</div>
+<div class="bg-surface border border-outline-variant p-md text-left flex flex-col justify-between h-32 hover:border-error transition-colors">
+<span class="font-label-bold text-label-bold text-on-surface-variant uppercase tracking-wider">Registros rechazados</span>
+<div class="flex items-baseline gap-xs">
+<span class="font-display-md text-display-md text-error">47</span>
+</div>
+<div class="h-1 bg-error w-full mt-xs"></div>
+</div>
+<div class="bg-surface border border-outline-variant p-md text-left flex flex-col justify-between h-32 hover:border-primary transition-colors">
+<span class="font-label-bold text-label-bold text-on-surface-variant uppercase tracking-wider">Tiempo total</span>
+<div class="flex items-baseline gap-xs">
+<span class="font-display-md text-display-md text-primary">1m 47s</span>
+</div>
+<div class="h-1 bg-primary w-full mt-xs"></div>
+</div>
+<div class="bg-surface border border-outline-variant p-md text-left flex flex-col justify-between h-32 hover:border-secondary-container transition-colors">
+<span class="font-label-bold text-label-bold text-on-surface-variant uppercase tracking-wider">Hash del archivo</span>
+<div class="flex items-baseline gap-xs">
+<span class="font-body-md text-body-md text-secondary truncate" title="a3f8b2c1d4e5f6g7h8i9j0k1l2m3n4o5">a3f8b2c1...</span>
+</div>
+<div class="h-1 bg-secondary-container w-full mt-xs"></div>
+</div>
+</div>
+<!-- Validations Summary Table -->
+<div class="w-full bg-surface border border-outline-variant rounded-lg overflow-hidden text-left mb-xl">
+<div class="bg-primary-container p-md border-b border-outline-variant">
+<h2 class="font-label-bold text-label-bold text-on-primary-container text-white uppercase tracking-wider">Resumen de validaciones</h2>
+</div>
+<table class="w-full">
+<thead>
+<tr class="bg-primary text-white font-label-bold text-label-bold uppercase">
+<th class="p-md border-r border-outline-variant/20">Validación</th>
+<th class="p-md border-r border-outline-variant/20 text-center">Detectados</th>
+<th class="p-md">Acción</th>
+</tr>
+</thead>
+<tbody class="font-body-md text-body-md">
+<tr class="border-b border-outline-variant bg-white">
+<td class="p-md border-r border-outline-variant">Valores nulos</td>
+<td class="p-md border-r border-outline-variant text-center font-bold text-error">12</td>
+<td class="p-md">Rechazados</td>
+</tr>
+<tr class="border-b border-outline-variant bg-on-primary-container/5">
+<td class="p-md border-r border-outline-variant">Valores negativos</td>
+<td class="p-md border-r border-outline-variant text-center font-bold text-error">8</td>
+<td class="p-md">Rechazados</td>
+</tr>
+<tr class="border-b border-outline-variant bg-white">
+<td class="p-md border-r border-outline-variant">Duplicados</td>
+<td class="p-md border-r border-outline-variant text-center font-bold text-secondary">15</td>
+<td class="p-md">Primero conservado</td>
+</tr>
+<tr class="border-b border-outline-variant bg-on-primary-container/5">
+<td class="p-md border-r border-outline-variant">FK inválidas</td>
+<td class="p-md border-r border-outline-variant text-center font-bold text-error">9</td>
+<td class="p-md">Rechazados</td>
+</tr>
+<tr class="border-b border-outline-variant bg-white">
+<td class="p-md border-r border-outline-variant">Fuera de rango</td>
+<td class="p-md border-r border-outline-variant text-center font-bold text-error">3</td>
+<td class="p-md">Rechazados</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Footer Actions -->
+<div class="flex flex-col md:flex-row gap-md justify-center w-full max-w-3xl">
+<button class="flex-1 px-lg py-sm border border-primary text-primary font-label-bold text-label-bold rounded-lg flex items-center justify-center gap-xs hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined" data-icon="error_outline">error_outline</span>
+                        Ver detalles de errores
+                    </button>
+<button class="flex-1 px-lg py-sm border border-primary text-primary font-label-bold text-label-bold rounded-lg hover:bg-surface-container-high transition-colors">
+                        Cargar otro archivo
+                    </button>
+<button class="flex-1 px-lg py-sm bg-primary text-on-primary font-label-bold text-label-bold rounded-lg hover:opacity-90 transition-opacity">
+                        Volver al inicio
+                    </button>
+</div>
+</div>
+</main>
+</div>
+<!-- Footer -->
+<footer class="w-full py-lg px-margin-desktop flex flex-col md:flex-row justify-between items-center gap-md bg-surface-container-highest border-t border-outline-variant relative z-50">
+<div class="font-label-bold text-label-bold text-primary">RetailBI</div>
+<p class="font-label-sm text-label-sm text-on-surface-variant">© 2024 RetailBI - Universidad de Ingeniería de Datos. Todos los derechos reservados.</p>
+<div class="flex gap-lg">
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Soporte Técnico</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Términos de Servicio</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Privacidad</a>
+</div>
+</footer>
+</body></html>

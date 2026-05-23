@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>RetailBI - Cargar archivo CSV</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=IBM+Plex+Sans:wght@500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-variant": "#dee4e4",
+                        "outline-variant": "#c3c6cf",
+                        "tertiary-container": "#2f3a46",
+                        "on-surface-variant": "#43474e",
+                        "surface-container-high": "#e3e9e9",
+                        "secondary-fixed": "#ffddb2",
+                        "primary-fixed": "#d2e4ff",
+                        "on-tertiary-fixed-variant": "#3d4854",
+                        "outline": "#73777f",
+                        "on-tertiary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "surface-container": "#e9efef",
+                        "tertiary": "#19242f",
+                        "tertiary-fixed": "#d8e4f3",
+                        "on-tertiary-fixed": "#111d27",
+                        "on-error-container": "#93000a",
+                        "surface-bright": "#f5fafa",
+                        "on-secondary-container": "#6f4900",
+                        "tertiary-fixed-dim": "#bcc8d6",
+                        "on-surface": "#171d1d",
+                        "surface-container-highest": "#dee4e4",
+                        "on-secondary-fixed": "#291800",
+                        "surface-tint": "#436083",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary-fixed-variant": "#624000",
+                        "on-secondary": "#ffffff",
+                        "surface": "#f5fafa",
+                        "primary-container": "#1b3a5b",
+                        "on-primary": "#ffffff",
+                        "inverse-surface": "#2b3232",
+                        "on-primary-fixed-variant": "#2b486a",
+                        "primary": "#002444",
+                        "on-primary-container": "#87a4cb",
+                        "on-background": "#171d1d",
+                        "inverse-primary": "#abc9f1",
+                        "on-primary-fixed": "#001c37",
+                        "secondary": "#815500",
+                        "error-container": "#ffdad6",
+                        "primary-fixed-dim": "#abc9f1",
+                        "brand-navy": "#1B3A5B",
+                        "brand-gold": "#F5B041"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "xs": "4px",
+                        "gutter": "16px",
+                        "md": "16px",
+                        "sm": "8px",
+                        "xl": "32px",
+                        "container-max": "1440px",
+                        "margin-desktop": "32px",
+                        "unit": "4px",
+                        "margin-mobile": "16px",
+                        "lg": "24px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "label-bold": ["Inter"],
+                        "display-lg": ["IBM Plex Sans"],
+                        "display-md": ["IBM Plex Sans"],
+                        "headline-sm": ["IBM Plex Sans"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .zebra-stripes tr:nth-child(even) {
+            background-color: rgba(0, 36, 68, 0.02);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<header class="bg-primary-container text-on-primary-container fixed top-0 w-full z-50 h-16 flex justify-between items-center px-lg border-b border-outline-variant">
+<div class="flex items-center gap-md">
+<span class="font-headline-sm text-headline-sm font-bold text-white">RetailBI</span>
+</div>
+<div class="flex items-center gap-lg">
+<div class="flex items-center gap-sm">
+<span class="font-body-md text-body-md text-white">Hola, Vinicio</span>
+<div class="w-8 h-8 rounded-full bg-surface-container-highest flex items-center justify-center overflow-hidden border border-outline-variant">
+<img alt="User Profile Avatar" class="w-full h-full object-cover" data-alt="A professional headshot of a mature businessman with a warm smile, wearing a dark blue suit jacket. The background is a clean, softly lit corporate office setting. The lighting is bright and modern, creating a professional and trustworthy atmosphere consistent with a business intelligence platform." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCwsoize0ImTT2zA9jLVJaLUSUnFB-fcTdsZveOx9K1w7rkmX3HGValyY-SvQkQJq_li2Sduydq23XLT6aaCdPRd8ytJdf6PZXR7D4EJht7plYnrvklN8GsdrMSqNxFp3a5J4DEpzvRZ44vM8hPB9magTwKUxtNDnvTXFG4beAVICA6yWoONqFS1rWrRQminXMpnR-Lgq2O6QdNFuzO8DNBaepi01oQYsrgr2kO1IFJa17V-pQye45MufJbpZD2FQ4YdUqOxqptde8u"/>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<button class="hover:bg-primary transition-colors p-xs rounded">
+<span class="material-symbols-outlined text-white" data-icon="notifications">notifications</span>
+</button>
+<button class="hover:bg-primary transition-colors p-xs rounded">
+<span class="material-symbols-outlined text-white" data-icon="settings">settings</span>
+</button>
+<a href="{{ url_for('logout') }}"
+   class="hover:bg-primary transition-colors p-xs rounded">
+
+    <span class="material-symbols-outlined text-white">
+        logout
+    </span>
+
+</a>
+</div>
+</div>
+</header>
+<div class="flex pt-16">
+<!-- SideNavBar -->
+<nav class="h-screen w-64 fixed left-0 bg-surface-container-lowest border-r border-surface-dim flex flex-col py-md gap-xs hidden md:flex">
+<div class="px-md mb-md">
+<p class="font-label-bold text-label-bold text-on-surface-variant uppercase tracking-wider"> {{ usuario_actual }}</p>
+<p class="font-body-md text-body-md text-outline">Gestión de Datos</p>
+</div>
+<a class="text-on-surface-variant hover:bg-surface-container rounded-lg mx-sm my-xs px-md py-sm flex items-center gap-md transition-all" href="/dashboard">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-label-bold text-label-bold">Dashboard</span>
+</a>
+<a class="bg-primary-container text-on-primary rounded-lg mx-sm my-xs px-md py-sm flex items-center gap-md translate-x-1 transition-transform" href="/cargar">
+<span class="material-symbols-outlined" data-icon="upload_file">upload_file</span>
+<span class="font-label-bold text-label-bold">Cargar archivo</span>
+</a>
+<a class="text-on-surface-variant hover:bg-surface-container rounded-lg mx-sm my-xs px-md py-sm flex items-center gap-md transition-all" href="/historial">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+<span class="font-label-bold text-label-bold">Historial</span>
+</a>
+<a class="text-on-surface-variant hover:bg-surface-container rounded-lg mx-sm my-xs px-md py-sm flex items-center gap-md transition-all" href="/errores">
+<span class="material-symbols-outlined" data-icon="report">report</span>
+<span class="font-label-bold text-label-bold">Errores</span>
+</a>
+<a class="text-on-surface-variant hover:bg-surface-container rounded-lg mx-sm my-xs px-md py-sm flex items-center gap-md transition-all" href="/usuario">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span class="font-label-bold text-label-bold">Usuarios</span>
+</a>
+</nav>
+<!-- Main Content Canvas -->
+<main class="flex-1 ml-64 p-margin-desktop overflow-y-auto bg-surface-bright">
+<div class="max-w-container-max mx-auto space-y-lg">
+<!-- Header -->
+<header class="space-y-xs">
+<h1 class="font-display-lg text-display-lg text-brand-navy">Cargar archivo de ventas</h1>
+<p class="text-body-lg text-on-surface-variant">Seleccione el archivo CSV con los datos a procesar</p>
+</header>
+<!-- Drag & Drop Zone -->
+<section class="bg-primary-fixed/10 border-2 border-dashed border-primary/30 rounded-xl p-xl flex flex-col items-center justify-center text-center space-y-md min-h-[300px]">
+<div class="w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-[40px] text-brand-navy" data-icon="cloud_upload">cloud_upload</span>
+</div>
+<div class="space-y-xs">
+<p class="text-display-md font-bold text-brand-navy">Arrastre el archivo aquí</p>
+<p class="text-body-md text-on-surface-variant">o</p>
+</div>
+<button class="px-xl py-md bg-brand-navy text-white font-label-bold rounded-lg hover:bg-primary transition-colors cursor-pointer flex items-center gap-sm">
+<span class="material-symbols-outlined" data-icon="add">add</span>
+                        Seleccionar archivo
+                    </button>
+<p class="text-label-sm text-on-surface-variant uppercase tracking-wider">Formato aceptado: CSV. Tamaño máximo: 50 MB</p>
+</section>
+<!-- File Preview Card -->
+<section class="bg-white border border-outline-variant p-md rounded-lg flex items-center justify-between">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 bg-surface-container flex items-center justify-center rounded-lg">
+<span class="material-symbols-outlined text-brand-navy text-[28px]" data-icon="description" style="font-variation-settings: 'FILL' 1;">description</span>
+</div>
+<div class="space-y-1">
+<div class="flex items-center gap-sm">
+<span class="font-label-bold text-body-md text-brand-navy">ventas_octubre_2026.csv</span>
+<span class="px-xs py-0.5 bg-surface-container-highest text-label-sm rounded uppercase">csv</span>
+</div>
+<div class="flex items-center gap-md text-label-sm text-on-surface-variant">
+<span>12.4 MB</span>
+<span class="w-1 h-1 bg-outline-variant rounded-full"></span>
+<span>100,000 filas detectadas</span>
+<span class="w-1 h-1 bg-outline-variant rounded-full"></span>
+<span>UTF-8</span>
+</div>
+</div>
+</div>
+<button class="p-sm hover:bg-error-container hover:text-error transition-colors rounded-lg text-on-surface-variant cursor-pointer">
+<span class="material-symbols-outlined" data-icon="close">close</span>
+</button>
+</section>
+<!-- Configuration Panel -->
+<section class="bg-white border border-outline-variant rounded-lg divide-y divide-outline-variant">
+<div class="p-md bg-surface-container-low">
+<h3 class="font-label-bold text-brand-navy uppercase tracking-widest text-label-sm">Configuración de carga</h3>
+</div>
+<div class="p-md grid grid-cols-1 md:grid-cols-2 gap-xl">
+<div class="space-y-sm">
+<label class="font-label-bold text-on-surface block">Sucursal destino (Opcional)</label>
+<select class="w-full border border-outline-variant rounded-lg p-md text-body-md bg-white focus:ring-1 focus:ring-brand-navy outline-none">
+<option value="">Seleccione una sucursal</option>
+<option value="1">Sucursal Norte - Ciudad de México</option>
+<option value="2">Sucursal Sur - Monterrey</option>
+<option value="3">E-commerce Central</option>
+</select>
+</div>
+<div class="flex items-end pb-xs">
+<label class="flex items-center gap-md cursor-pointer group">
+<div class="relative flex items-center">
+<input checked="" class="peer h-5 w-5 rounded border-outline-variant text-brand-navy focus:ring-brand-navy" type="checkbox"/>
+</div>
+<span class="text-body-md text-on-surface font-medium group-hover:text-brand-navy transition-colors">Validar antes de cargar</span>
+</label>
+</div>
+</div>
+</section>
+<!-- Footer Buttons -->
+<footer class="flex justify-end gap-md pt-xl">
+<button class="px-xl py-md border border-outline-variant text-on-surface-variant font-label-bold rounded-lg hover:bg-surface-variant transition-colors cursor-pointer">
+                        Cancelar
+                    </button>
+<button class="px-xl py-md bg-brand-navy text-white font-label-bold rounded-lg hover:bg-primary transition-all flex items-center gap-sm shadow-md active:scale-95 cursor-pointer">
+                        Iniciar carga
+                        <span class="material-symbols-outlined" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</footer>
+</div>
+</main>
+</div>
+</body></html>

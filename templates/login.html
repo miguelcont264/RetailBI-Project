@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html class="light" lang="es">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Login - RetailBI</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=IBM+Plex+Sans:wght@500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <style>
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3 { font-family: 'IBM Plex Sans', sans-serif; }
+    </style>
+    </head>
+<body class="bg-[#eff5f5] text-[#171d1d] min-h-screen flex flex-col relative overflow-hidden">
+    <div class="fixed left-0 top-0 bottom-0 w-4 bg-[#1b3a5b] z-50"></div>
+    
+    <main class="flex-grow flex items-center justify-center px-4 md:px-0">
+        <div class="w-full max-w-[400px] bg-white border border-[#d5dbdb] p-8 flex flex-col items-center">
+            
+            <div class="mb-6">
+                <img alt="RetailBI Logo" class="h-12 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDOdY8uK78i1kDE7rMMxQ9aNN709bsBLlq3Bs52E-RhQO_iBTKHvsi5YMN525Y5BBqYX2N6trId6sFfNgCfyAOxK-csqhGlu0RJHawqjDn2VDfMpQu4i0llZJ1GPrSPPvgRIRimxR6D9Vg8hRbcI92d_ThraPbCJxFbJ1CbnMpKrXNvFmSPc3CyLtPVtzZNSjsqzBZjSDfgk7xQuoysW3zEfssU2bfUFPS9xdF2ZM9ayX8ekgBNXHQuUzTHTqj4N1bUJXinkiPiUaTp"/>
+            </div>
+            
+            <div class="text-center mb-8">
+                <h1 class="font-display-lg text-[32px] font-semibold text-[#1b3a5b] mb-1">RetailBI</h1>
+                <p class="text-[14px] text-[#43474e]">Iniciar sesión</p>
+            </div>
+
+            {% with messages = get_flashed_messages(with_categories=true) %}
+              {% if messages %}
+                {% for category, message in messages %}
+                  <div class="w-full bg-[#ffdad6] text-[#93000a] p-3 text-sm text-center mb-4 rounded-sm border border-[#93000a]">
+                    {{ message }}
+                  </div>
+                {% endfor %}
+              {% endif %}
+            {% endwith %}
+
+            <form method="POST" action="/login" class="w-full space-y-6">
+                <div class="space-y-1">
+                    <label class="font-semibold text-[12px] uppercase tracking-wide text-[#43474e] block" for="username">Usuario</label>
+                    <input class="w-full h-12 px-4 bg-white border border-[#d5dbdb] focus:border-[#1b3a5b] focus:ring-1 focus:ring-[#1b3a5b] text-[14px] outline-none transition-all" id="username" name="username" placeholder="nombre.apellido" type="text" required/>
+                </div>
+                
+                <div class="space-y-1 relative">
+                    <label class="font-semibold text-[12px] uppercase tracking-wide text-[#43474e] block" for="password">Contraseña</label>
+                    <div class="relative">
+                        <input class="w-full h-12 px-4 bg-white border border-[#d5dbdb] focus:border-[#1b3a5b] focus:ring-1 focus:ring-[#1b3a5b] text-[14px] outline-none transition-all pr-12" id="password" name="password" placeholder="••••••••" type="password" required/>
+                    </div>
+                </div>
+                
+                <button class="w-full h-12 bg-[#1b3a5b] text-white font-semibold text-[12px] uppercase tracking-wider hover:opacity-90 active:scale-[0.98] transition-all" type="submit">
+                    Ingresar
+                </button>
+            </form>
+            
+            <div class="mt-8 text-center">
+                <a class="text-[12px] text-[#43474e] hover:text-[#1b3a5b] transition-colors" href="#">
+                    ¿Problemas para ingresar? Contacte al administrador
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="w-full py-6 px-8 border-t border-[#d5dbdb] bg-white flex justify-center items-center z-10">
+        <div class="text-center">
+            <p class="text-[12px] text-[#43474e]">
+                Universidad Mariano Gálvez · Grupo #4 · 2026
+            </p>
+        </div>
+    </footer>
+</body>
+</html>
