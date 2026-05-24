@@ -138,6 +138,57 @@ function cerrarPanelUsuario() {
 }
 
 </script>
+<script>
+
+function abrirEditarUsuario(id, nombre, usuario, email, rol, activo) {
+
+    abrirPanelUsuario()
+
+    document.querySelector('[name="usuario_id"]').value = id
+    document.querySelector('[name="nombre_completo"]').value = nombre
+    document.querySelector('[name="usuario"]').value = usuario
+    document.querySelector('[name="email"]').value = email
+    document.querySelector('[name="rol"]').value = rol
+
+    if (activo == "True" || activo == "1") {
+
+        document.querySelector('[name="activo"]').checked = true
+
+    } else {
+
+        document.querySelector('[name="activo"]').checked = false
+
+    }
+
+    document.getElementById("tituloPanel").innerText = "Editar usuario"
+
+    document.getElementById("formUsuario").action =
+        "/editar_usuario/" + id
+}
+
+function eliminarUsuario(id) {
+
+    if (confirm("¿Desea eliminar este usuario?")) {
+
+        window.location.href = "/eliminar_usuario/" + id
+
+    }
+
+}
+
+function verPassword(id) {
+
+    fetch("/ver_password/" + id)
+        .then(response => response.text())
+        .then(data => {
+
+            alert("Password temporal: " + data)
+
+        })
+
+}
+
+</script>
 <body class="bg-background text-on-background font-body-md overflow-hidden">
 <!-- Top Navigation Bar -->
 <header class="bg-primary-container text-on-primary-container fixed top-0 w-full z-50 h-16 flex justify-between items-center px-lg border-b border-outline-variant">
@@ -258,7 +309,9 @@ function cerrarPanelUsuario() {
 
     <!-- BOTON -->
     <button
-        type="submit"
+      
+    id="btnCrearUsuario"
+    type="submit"
         class="bg-primary-container text-white px-lg py-sm rounded-lg
                font-label-bold text-label-bold
                hover:opacity-90 transition-all">
@@ -427,39 +480,49 @@ class="bg-primary-container text-white px-lg py-sm rounded-lg font-label-bold te
                         <!-- Acciones -->
                         <td class="p-md">
 
-                            <div class="flex justify-center gap-md">
+                         <div class="flex justify-center gap-md">
 
-                                <!-- Editar -->
-                                <button
-                                    class="text-on-surface-variant hover:text-primary transition-colors">
+    <!-- EDITAR -->
+    <button
+        onclick="abrirEditarUsuario(
+            '{{ usuario.UsuarioID }}',
+            '{{ usuario.NombreCompleto }}',
+            '{{ usuario.NombreUsuario }}',
+            '{{ usuario.Email }}',
+            '{{ usuario.Rol }}',
+            '{{ usuario.Activo }}'
+        )"
+        class="text-on-surface-variant hover:text-primary transition-colors">
 
-                                    <span class="material-symbols-outlined">
-                                        edit
-                                    </span>
+        <span class="material-symbols-outlined">
+            edit
+        </span>
 
-                                </button>
+    </button>
 
-                                <!-- Password -->
-                                <button
-                                    class="text-on-surface-variant hover:text-primary transition-colors">
+    <!-- VER PASSWORD -->
+    <button
+        onclick="verPassword('{{ usuario.UsuarioID }}')"
+        class="text-on-surface-variant hover:text-primary transition-colors">
 
-                                    <span class="material-symbols-outlined">
-                                        key
-                                    </span>
+        <span class="material-symbols-outlined">
+            key
+        </span>
 
-                                </button>
+    </button>
 
-                                <!-- Eliminar -->
-                                <button
-                                    class="text-on-surface-variant hover:text-error transition-colors">
+    <!-- ELIMINAR -->
+    <button
+        onclick="eliminarUsuario('{{ usuario.UsuarioID }}')"
+        class="text-on-surface-variant hover:text-error transition-colors">
 
-                                    <span class="material-symbols-outlined">
-                                        delete
-                                    </span>
+        <span class="material-symbols-outlined">
+            delete
+        </span>
 
-                                </button>
+    </button>
 
-                            </div>
+</div>
 
                         </td>
 
@@ -513,9 +576,12 @@ class="bg-primary-container text-white px-lg py-sm rounded-lg font-label-bold te
     <!-- Header -->
     <div class="flex justify-between items-center mb-xl">
 
-        <h2 class="font-display-md text-display-md text-primary">
-            Nuevo usuario
-        </h2>
+     <h2 id="tituloPanel"
+    class="font-display-md text-display-md text-primary">
+
+    Nuevo usuario
+
+</h2>
 
         <button type="button"
                 onclick="cerrarPanelUsuario()"
@@ -531,10 +597,12 @@ class="bg-primary-container text-white px-lg py-sm rounded-lg font-label-bold te
 
     <!-- FORMULARIO -->
     <form
-        method="POST"
-        action="/crear_usuario"
-        class="flex-1 space-y-lg overflow-y-auto">
-
+    method="POST"
+    action="/crear_usuario"
+    onsubmit="cerrarPanelUsuario()"
+    class="flex-1 space-y-lg overflow-y-auto">
+        
+<input type="hidden" name="usuario_id">
         <!-- Nombre -->
         <div class="space-y-xs">
 
@@ -704,4 +772,55 @@ class="bg-primary-container text-white px-lg py-sm rounded-lg font-label-bold te
     </form>
 
 </div>
+<script>
+
+window.onload = function () {
+
+    cerrarPanelUsuario();
+
+}
+
+</script>
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    // CERRAR PANEL SIEMPRE AL CARGAR
+    const panel = document.getElementById("panelUsuario");
+    const overlay = document.getElementById("overlayUsuario");
+
+    if (panel) {
+        panel.classList.add("translate-x-full");
+    }
+
+    if (overlay) {
+        overlay.classList.add("hidden");
+    }
+
+});
+
+</script>
+<script>
+
+const formUsuario = document.querySelector('#panelUsuario form');
+
+if (formUsuario) {
+
+    formUsuario.addEventListener("submit", function () {
+
+        const boton = document.getElementById("btnCrearUsuario");
+
+        boton.disabled = true;
+
+        boton.innerHTML = `
+            <span class="animate-pulse">
+                Creando...
+            </span>
+        `;
+
+    });
+
+}
+
+</script>
 </body></html>
