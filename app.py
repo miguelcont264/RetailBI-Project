@@ -657,6 +657,58 @@ def crear_usuario():
 
     return redirect("/usuario")
 
+@app.route("/editar_usuario/<int:id>", methods=["POST"])
+def editar_usuario(id):
+
+
+    conexion = conectar_db()
+    cursor = conexion.cursor()
+
+    nombre = request.form["nombre_completo"]
+    usuario = request.form["usuario"]
+    email = request.form["email"]
+    rol = request.form["rol"]
+
+    activo = 1 if request.form.get("activo") else 0
+
+    cursor.execute("""
+        UPDATE sec.Usuario
+        SET
+            NombreCompleto = ?,
+            NombreUsuario = ?,
+            Email = ?,
+            Rol = ?,
+            Activo = ?
+        WHERE UsuarioID = ?
+    """, (
+        nombre,
+        usuario,
+        email,
+        rol,
+        activo,
+        id
+    ))
+
+    conexion.commit()
+    conexion.close()
+
+    return redirect("/usuario")
+
+@app.route("/eliminar_usuario/<int:id>")
+def eliminar_usuario(id):
+
+    conexion = conectar_db()
+    cursor = conexion.cursor()
+
+    cursor.execute("""
+        DELETE FROM sec.Usuario
+        WHERE UsuarioID = ?
+    """, (id,))
+
+    conexion.commit()
+    conexion.close()
+
+    return redirect("/usuario")
 # ---------------------------------------------------
 # EJECUTAR
 # ---------------------------------------------------
