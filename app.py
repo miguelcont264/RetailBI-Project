@@ -71,8 +71,8 @@ def login():
     cursor = conn.cursor()
 
     cursor.execute("""
-        SELECT UsuarioID, PasswordHash, Salt
-        FROM sec.Usuario
+        SELECT UsuarioID, PasswordHash, Salt, Activo
+        FROM sec.Usuario_seccion
         WHERE NombreUsuario = ?
     """, (username,))
 
@@ -85,8 +85,15 @@ def login():
         usuario_id = usuario[0]
         password_hash_db = usuario[1]
         salt_db = usuario[2]
+        activo = usuario[3]
 
-        # Generar hash
+        # VALIDAR SI ESTÁ ACTIVO
+        if activo == 0:
+
+            flash("Usuario desactivado")
+            return redirect(url_for('index'))
+
+        # GENERAR HASH
         password_hash_input = hashlib.sha256(
             salt_db + password.encode("utf-8")
         ).digest()
@@ -609,7 +616,7 @@ def crear_usuario():
     # VALIDAR USUARIO EXISTENTE
     cursor.execute("""
         SELECT UsuarioID
-        FROM sec.Usuario
+        FROM sec.Usuario_seccion
         WHERE NombreUsuario = ?
     """, (usuario,))
 
@@ -620,15 +627,41 @@ def crear_usuario():
         flash("El usuario ya existe", "error")
         return redirect("/usuario")
 
-    # GENERAR SALT
+    # SALT
     salt = os.urandom(32)
 
-    # HASH SHA256
+    # HASH
     password_hash = hashlib.sha256(
         salt + password.encode("utf-8")
     ).digest()
 
-    # INSERTAR USUARIO
+    # =================================================
+    # INSERTAR EN TABLA LOGIN
+    # =================================================
+    cursor.execute("""
+        INSERT INTO sec.Usuario_seccion (
+            NombreUsuario,
+            PasswordHash,
+            Salt,
+            NombreCompleto,
+            Rol,
+            Activo,
+            Email
+        )
+        VALUES (?, ?, ?, ?, ?, ?, ?)
+    """, (
+        usuario,
+        password_hash,
+        salt,
+        nombre_completo,
+        rol,
+        activo,
+        email
+    ))
+
+    # =================================================
+    # INSERTAR EN TABLA HISTORIAL
+    # =================================================
     cursor.execute("""
         INSERT INTO sec.Usuario (
             NombreUsuario,
@@ -657,9 +690,10 @@ def crear_usuario():
 
     return redirect("/usuario")
 
+
+
 @app.route("/editar_usuario/<int:id>", methods=["POST"])
 def editar_usuario(id):
-
 
     conexion = conectar_db()
     cursor = conexion.cursor()
@@ -671,6 +705,26 @@ def editar_usuario(id):
 
     activo = 1 if request.form.get("activo") else 0
 
+    # TABLA LOGIN
+    cursor.execute("""
+        UPDATE sec.Usuario_seccion
+        SET
+            NombreCompleto = ?,
+            NombreUsuario = ?,
+            Email = ?,
+            Rol = ?,
+            Activo = ?
+        WHERE UsuarioID = ?
+    """, (
+        nombre,
+        usuario,
+        email,
+        rol,
+        activo,
+        id
+    ))
+
+    # TABLA HISTORIAL
     cursor.execute("""
         UPDATE sec.Usuario
         SET
@@ -692,6 +746,8 @@ def editar_usuario(id):
     conexion.commit()
     conexion.close()
 
+    flash("Usuario actualizado", "success")
+
     return redirect("/usuario")
 
 @app.route("/eliminar_usuario/<int:id>")
@@ -700,16 +756,25 @@ def eliminar_usuario(id):
     conexion = conectar_db()
     cursor = conexion.cursor()
 
+    # DESACTIVAR EN TABLA HISTORIAL
     cursor.execute("""
-        DELETE FROM sec.Usuario
+        UPDATE sec.Usuario
+        SET Activo = 0
+        WHERE UsuarioID = ?
+    """, (id,))
+
+    # ELIMINAR DEL LOGIN
+    cursor.execute("""
+        DELETE FROM sec.Usuario_seccion
         WHERE UsuarioID = ?
     """, (id,))
 
     conexion.commit()
     conexion.close()
 
+    flash("Usuario desactivado correctamente", "success")
+
     return redirect("/usuario")
-# ---------------------------------------------------
 # EJECUTAR
 # ---------------------------------------------------
 if __name__ == '__main__':
